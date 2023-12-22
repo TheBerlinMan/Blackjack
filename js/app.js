@@ -12,3 +12,17 @@ function createDeck(){
   return deck
 }
 
+function shuffleDeck(){
+  for (let i = 0 ; i < deck.length ; i++){
+    let tempCard = deck[i]
+    let randomIndex = Math.floor(Math.random() * 52)
+    deck[i] = deck[randomIndex]
+    deck[randomIndex] = tempCard
+  }
+}
+
+createDeck()
+shuffleDeck()
+console.log(deck);
+
+
