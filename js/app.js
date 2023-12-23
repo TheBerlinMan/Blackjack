@@ -41,11 +41,6 @@ console.log(dealerHand)
 
 // determine player/dealer hand values 
 
-let stringValues = playerHand.map(string => string.substring(0,1));
-console.log(stringValues);
-
-
-
 function cardToPoints(card){
   if(card === 'A') {
     return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
@@ -59,9 +54,19 @@ function cardToPoints(card){
   }
 }
 
-let cardValues = stringValues.map(cardToPoints)
-console.log(cardValues)
+function playerHandValue() {
+  let stringValues = playerHand.map(string => string.substring(0,1));
+  let cardValues = stringValues.map(cardToPoints)
+  let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return totalHandValue
+}
 
-let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-console.log(totalHandValue);
+function dealerHandValue() {
+  let stringValues = dealerHand.map(string => string.substring(0,1));
+  let cardValues = stringValues.map(cardToPoints)
+  let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return totalHandValue
+}
 
+console.log(playerHandValue());
+console.log(dealerHandValue());
