@@ -48,7 +48,7 @@ console.log(stringValues);
 
 function cardToPoints(card){
   if(card === 'A') {
-    return 11 // currently for simplicity. to comeback later and provide cases for A = 1 or 11
+    return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
   } else if (card === 'T' ||
              card === 'J' ||
              card === 'Q' ||
@@ -59,6 +59,9 @@ function cardToPoints(card){
   }
 }
 
-let handValue = stringValues.map(cardToPoints)
-console.log(handValue)
+let cardValues = stringValues.map(cardToPoints)
+console.log(cardValues)
+
+let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+console.log(totalHandValue);
 
