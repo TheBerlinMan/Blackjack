@@ -21,17 +21,44 @@ function shuffleDeck(){
   }
 }
 
+// create shuffled deck
+
 createDeck()
 shuffleDeck()
-console.log(deck);
+console.log(deck)
 
+// distribute cards from deck to player/dealer hands
 
 let playerHand = []
 
-playerHand.push(deck[0],deck[2]);
-console.log(playerHand);
+playerHand.push(deck[0],deck[2])
+console.log(playerHand)
 
 let dealerHand = []
 
-dealerHand.push(deck[1]);
-console.log(dealerHand);
+dealerHand.push(deck[1])
+console.log(dealerHand)
+
+// determine player/dealer hand values 
+
+let stringValues = playerHand.map(string => string.substring(0,1));
+console.log(stringValues);
+
+
+
+function cardToPoints(card){
+  if(card === 'A') {
+    return 11
+  } else if (card === 'T' ||
+             card === 'J' ||
+             card === 'Q' ||
+             card === 'K' ){  
+    return 10
+  } else  {
+    return parseInt(card)
+  }
+}
+
+let handValue = stringValues.map(cardToPoints)
+console.log(handValue)
+
