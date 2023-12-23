@@ -1,9 +1,26 @@
-let playerHand = []
-let dealerHand = []
-
+/*-------------------------------- Constants --------------------------------*/
 const cards = ['A' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9', 'T', 'J' , 'Q' , 'K']
 const suits = ['H' , 'D' , 'C' , 'S'] // Hearts, Diamonds, Clovers, Spades
 const deck = []
+/*---------------------------- Variables (state) ----------------------------*/
+let playerHand = []
+let dealerHand = []
+/*------------------------ Cached Element References ------------------------*/
+/*----------------------------- Event Listeners -----------------------------*/
+
+/*-------------------------------- Functions --------------------------------*/
+playRound()
+
+function playRound(){
+  createDeck()
+  shuffleDeck()
+  dealPlayerHand()
+  dealDealerHand()
+}
+
+console.log(createDeck());
+console.log(playerHandValue());
+console.log(dealerHandValue());
 
 function createDeck(){
   for (let i = 0 ; i < cards.length ; i++){
@@ -22,19 +39,6 @@ function shuffleDeck(){
     deck[randomIndex] = tempCard
   }
 }
-
-playRound()
-
-function playRound(){
-  createDeck()
-  shuffleDeck()
-  dealPlayerHand()
-  dealDealerHand()
-}
-
-console.log(createDeck());
-console.log(playerHandValue());
-console.log(dealerHandValue());
 
 function dealPlayerHand(){
   playerHand.push(deck[0],deck[2])
