@@ -1,14 +1,17 @@
 /*-------------------------------- Constants --------------------------------*/
 const cards = ['A' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9', 'T', 'J' , 'Q' , 'K']
 const suits = ['H' , 'D' , 'C' , 'S'] // Hearts, Diamonds, Clovers, Spades
-const deck = []
 /*---------------------------- Variables (state) ----------------------------*/
+let deck = []
 let playerHand = []
 let dealerHand = []
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
+let dealerHandValueDisplay = document.getElementById('dealer-hand-value')
+let playerHandValueDisplay = document.getElementById('player-hand-value')
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -18,13 +21,15 @@ dealBtn.addEventListener('click', playRound)
 
 
 function playRound(){
+  playerHand = []
+  dealerHand = []
+  deck = []
   createDeck()
   shuffleDeck()
   dealPlayerHand()
   dealDealerHand()
-  console.log(createDeck());
-  console.log(playerHandValue());
-  console.log(dealerHandValue());
+  dealerHandValueDisplay.innerHTML = dealerHandValue()
+  playerHandValueDisplay.innerHTML = playerHandValue()
 }
 
 function createDeck(){
