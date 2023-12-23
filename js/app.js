@@ -30,8 +30,6 @@ function playRound(){
   shuffleDeck()
   dealPlayerHand()
   dealDealerHand()
-  playerHandValue()
-  dealerHandValue()
 }
 
 console.log(createDeck());
