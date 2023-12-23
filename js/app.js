@@ -30,14 +30,15 @@ console.log(deck)
 // distribute cards from deck to player/dealer hands
 
 let playerHand = []
-
-playerHand.push(deck[0],deck[2])
-console.log(playerHand)
-
 let dealerHand = []
 
-dealerHand.push(deck[1])
-console.log(dealerHand)
+function dealPlayerHand(){
+  playerHand.push(deck[0],deck[2])
+}
+
+function dealDealerHand(){
+  dealerHand.push(deck[1])
+}
 
 // determine player/dealer hand values 
 
