@@ -26,8 +26,12 @@ function playRound(){
   deck = []
   createDeck()
   shuffleDeck()
-  dealPlayerHand()
-  dealDealerHand()
+  dealHands()
+  displayHandValues()
+}
+
+
+function displayHandValues(){
   dealerHandValueDisplay.innerHTML = `dealer shows: ${dealerHandValue()}`
   playerHandValueDisplay.innerHTML = `player shows: ${playerHandValue()}`
 }
@@ -50,13 +54,11 @@ function shuffleDeck(){
   }
 }
 
-function dealPlayerHand(){
+function dealHands(){
   playerHand.push(deck[0],deck[2])
-}
-
-function dealDealerHand(){
   dealerHand.push(deck[1],deck[3]) 
 }
+
 
 function cardToPoints(card){
   if(card === 'A') {
