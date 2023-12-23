@@ -6,21 +6,26 @@ const deck = []
 let playerHand = []
 let dealerHand = []
 /*------------------------ Cached Element References ------------------------*/
+
+let hitBtn = document.getElementById('hit-button')
+let dealBtn = document.getElementById('deal-button')
+
 /*----------------------------- Event Listeners -----------------------------*/
 
+dealBtn.addEventListener('click', playRound)
+
 /*-------------------------------- Functions --------------------------------*/
-playRound()
+
 
 function playRound(){
   createDeck()
   shuffleDeck()
   dealPlayerHand()
   dealDealerHand()
+  console.log(createDeck());
+  console.log(playerHandValue());
+  console.log(dealerHandValue());
 }
-
-console.log(createDeck());
-console.log(playerHandValue());
-console.log(dealerHandValue());
 
 function createDeck(){
   for (let i = 0 ; i < cards.length ; i++){
