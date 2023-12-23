@@ -1,3 +1,5 @@
+let playerHand = []
+let dealerHand = []
 
 const cards = ['A' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9', 'T', 'J' , 'Q' , 'K']
 const suits = ['H' , 'D' , 'C' , 'S'] // Hearts, Diamonds, Clovers, Spades
@@ -21,16 +23,20 @@ function shuffleDeck(){
   }
 }
 
-// create shuffled deck
+playRound()
 
-createDeck()
-shuffleDeck()
-console.log(deck)
+function playRound(){
+  createDeck()
+  shuffleDeck()
+  dealPlayerHand()
+  dealDealerHand()
+  playerHandValue()
+  dealerHandValue()
+}
 
-// distribute cards from deck to player/dealer hands
-
-let playerHand = []
-let dealerHand = []
+console.log(createDeck());
+console.log(playerHandValue());
+console.log(dealerHandValue());
 
 function dealPlayerHand(){
   playerHand.push(deck[0],deck[2])
@@ -39,8 +45,6 @@ function dealPlayerHand(){
 function dealDealerHand(){
   dealerHand.push(deck[1])
 }
-
-// determine player/dealer hand values 
 
 function cardToPoints(card){
   if(card === 'A') {
@@ -68,6 +72,3 @@ function dealerHandValue() {
   let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
   return totalHandValue
 }
-
-console.log(playerHandValue());
-console.log(dealerHandValue());
