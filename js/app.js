@@ -22,6 +22,16 @@ dealBtn.addEventListener('click', playRound)
 
 /*-------------------------------- Functions --------------------------------*/
 
+// to be done:
+// - add hit functionality
+// - add stay functionality (switch to dealer turn)
+// - dealers turn
+// - decide winner
+// - add purse, bet variables in JS, bet input element in HTML
+// - adjust code to include winning/losing of bet 
+// - style
+// - walk away functionality 
+// - adjust ace to be 1 or 11 and effected code
 
 function playRound(){
   playerHand = []
@@ -37,8 +47,6 @@ function playRound(){
   displayPlayerHand.innerHTML = playerHand
 }
 
-
-
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
@@ -51,7 +59,6 @@ function blackjackCheck(){
     resultMessage.innerHTML = 'Player has Blackjack! Player wins!'
   }
 }
-
 
 function displayHandValues(){
   dealerHandValueDisplay.innerHTML = `dealer shows: ${dealerHandValue()}`
@@ -80,7 +87,6 @@ function dealHands(){
   playerHand.push(deck[0],deck[2])
   dealerHand.push(deck[1],deck[3]) 
 }
-
 
 function cardToPoints(card){
   if(card === 'A') {
