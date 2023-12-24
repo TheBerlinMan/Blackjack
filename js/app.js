@@ -19,6 +19,7 @@ let resultMessage = document.getElementById('result-message')
 /*----------------------------- Event Listeners -----------------------------*/
 
 dealBtn.addEventListener('click', playRound)
+hitBtn.addEventListener('click', dealCard)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -45,6 +46,20 @@ function playRound(){
   displayHandValues()
   blackjackCheck()
 }
+
+function dealCard(){
+  let newCard = playerHand.push(deck.splice(0,1)[0])
+  if(playerHandValue() > 21){
+    resultMessage.innerHTML=`player busts`
+  }
+  render(newCard)
+}
+
+function render(newCard){
+  displayCards()
+  displayHandValues()
+}
+
 
 function displayCards(){
   displayDealerHand.innerHTML = dealerHand
