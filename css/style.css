@@ -22,7 +22,13 @@ h1{
 }
 
 #blackjack-rules > h3{
+
   border: 3px solid black;
   color: maroon;
   padding: 5px 60px;
+  margin: 0;
+}
+
+#blackjack-rules > h5{
+  margin: 0;
 }
