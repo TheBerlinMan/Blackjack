@@ -56,12 +56,12 @@ function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
     resultMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
-  } 
-  if (dealerHandValue() === 21) {
+  } else if (dealerHandValue() === 21) {
     resultMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
-  } 
-  if (playerHandValue() === 21) {
+  } else if (playerHandValue() === 21) {
     resultMessage.innerHTML = 'Player has Blackjack! Player wins!'
+  } else {
+    resultMessage.innerHTML = ''
   }
 }
 
