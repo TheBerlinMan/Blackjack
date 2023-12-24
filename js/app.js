@@ -29,10 +29,20 @@ function playRound(){
   shuffleDeck()
   dealHands()
   displayHandValues()
+  blackjackCheck()
 }
 
-
-
+function blackjackCheck(){
+  if(playerHandValue() === 21 & dealerHandValue() === 21) {
+    resultMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
+  } 
+  if (dealerHandValue() === 21) {
+    resultMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
+  } 
+  if (playerHandValue() === 21) {
+    resultMessage.innerHTML = 'Player has Blackjack! Player wins!'
+  }
+}
 
 
 function displayHandValues(){
