@@ -24,7 +24,7 @@ hitBtn.addEventListener('click', dealCard)
 /*-------------------------------- Functions --------------------------------*/
 
 // to be done:
-// - add hit functionality
+//// - add hit functionality
 // - add stay functionality (switch to dealer turn)
 // - dealers turn
 // - decide winner
@@ -48,6 +48,7 @@ function playRound(){
 }
 
 function dealCard(){
+  // add functionality to stop allowing hit after 21 and switch turn to dealer
   let newCard = playerHand.push(deck.splice(0,1)[0])
   if(playerHandValue() > 21){
     resultMessage.innerHTML=`player busts`
@@ -91,7 +92,6 @@ function createDeck(){
      deck.push(cards[i] + suits[v])
     }
   }
-  return deck
 }
 
 function shuffleDeck(){
