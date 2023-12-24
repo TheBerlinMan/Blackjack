@@ -29,8 +29,8 @@ stayBtn.addEventListener('click', dealerTurn)
 
 // to be done:
 //// - add hit functionality
-// - add stay functionality (switch to dealer turn)
-// - dealers turn
+//// - add stay functionality (switch to dealer turn)
+//// - dealers turn
 // - decide winner
 // - add purse, bet variables in JS, bet input element in HTML
 // - adjust code to include winning/losing of bet 
