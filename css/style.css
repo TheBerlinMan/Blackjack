@@ -1,4 +1,28 @@
 
+body{
+  background-color: green;
+}
+
 h1{
   text-align: center;
+}
+
+.table{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid black;
+  /* width: 600px; */
+}
+
+.status-bar{
+  border: 3px solid black;
+  /* width: 600px; */
+}
+
+#blackjack-rules > h3{
+  border: 3px solid black;
+  color: maroon;
+  padding: 5px 60px;
 }
