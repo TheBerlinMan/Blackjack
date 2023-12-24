@@ -11,6 +11,8 @@ let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
 let dealerHandValueDisplay = document.getElementById('dealer-hand-value')
 let playerHandValueDisplay = document.getElementById('player-hand-value')
+let displayPlayerHand = document.getElementById('player-cards')
+let displayDealerHand = document.getElementById('dealer-cards')
 let resultMessage = document.getElementById('result-message')
 
 
@@ -30,7 +32,12 @@ function playRound(){
   dealHands()
   displayHandValues()
   blackjackCheck()
+  displayDealerHand.innerHTML = dealerHand
+  displayDealerHand.style.color = 'red'
+  displayPlayerHand.innerHTML = playerHand
 }
+
+
 
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
