@@ -11,6 +11,7 @@ let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
 let dealerHandValueDisplay = document.getElementById('dealer-hand-value')
 let playerHandValueDisplay = document.getElementById('player-hand-value')
+let resultMessage = document.getElementById('result-message')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -29,6 +30,9 @@ function playRound(){
   dealHands()
   displayHandValues()
 }
+
+
+
 
 
 function displayHandValues(){
