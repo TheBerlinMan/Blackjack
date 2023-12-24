@@ -23,6 +23,7 @@ let resultMessage = document.getElementById('result-message')
 
 dealBtn.addEventListener('click', playRound)
 hitBtn.addEventListener('click', dealCard)
+stayBtn.addEventListener('click', dealerTurn)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -48,6 +49,21 @@ function playRound(){
   displayCards()
   displayHandValues()
   blackjackCheck()
+}
+
+
+function dealerTurn(){
+  // this can be made into a loop... possible for ... while? need to investigate 
+  if(dealerHandValue() < 17){
+    dealerHand.push(deck.splice(0,1)[0])
+  }
+  if(dealerHandValue() < 17){
+    dealerHand.push(deck.splice(0,1)[0])
+  }
+  if(dealerHandValue() < 17){
+    dealerHand.push(deck.splice(0,1)[0])
+  }
+  render()
 }
 
 function dealCard(){
