@@ -33,6 +33,7 @@ function playRound(){
 }
 
 function blackjackCheck(){
+  // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
     resultMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
   } 
