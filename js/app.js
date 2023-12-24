@@ -54,6 +54,7 @@ function playRound(){
 
 function dealerTurn(){
   // this can be made into a loop... possible for ... while? need to investigate 
+  // would also be nice to delay each draw somehow
   if(dealerHandValue() < 17){
     dealerHand.push(deck.splice(0,1)[0])
   }
