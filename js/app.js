@@ -30,7 +30,8 @@ dealBtn.addEventListener('click', playRound)
 // - add purse, bet variables in JS, bet input element in HTML
 // - adjust code to include winning/losing of bet 
 // - style
-// - walk away functionality 
+// - walk away functionality (add button in HTML too) 
+// - new game functionality (add button in HTML too) 
 // - adjust ace to be 1 or 11 and effected code
 
 function playRound(){
