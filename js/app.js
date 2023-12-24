@@ -5,10 +5,13 @@ const suits = ['H' , 'D' , 'C' , 'S'] // Hearts, Diamonds, Clovers, Spades
 let deck = []
 let playerHand = []
 let dealerHand = []
+let purse = 500
+let bet
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
+let stayBtn = document.getElementById('stay-button')
 let displayDealerHandValue = document.getElementById('dealer-hand-value')
 let displayerPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
