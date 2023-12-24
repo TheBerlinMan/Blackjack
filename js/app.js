@@ -9,8 +9,8 @@ let dealerHand = []
 
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
-let dealerHandValueDisplay = document.getElementById('dealer-hand-value')
-let playerHandValueDisplay = document.getElementById('player-hand-value')
+let displayDealerHandValue = document.getElementById('dealer-hand-value')
+let displayerPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
 let displayDealerHand = document.getElementById('dealer-cards')
 let resultMessage = document.getElementById('result-message')
@@ -40,9 +40,13 @@ function playRound(){
   deck = []
   createDeck()
   shuffleDeck()
-  dealHands()
+  dealCards()
+  displayCards()
   displayHandValues()
   blackjackCheck()
+}
+
+function displayCards(){
   displayDealerHand.innerHTML = dealerHand
   displayDealerHand.style.color = 'red'
   displayPlayerHand.innerHTML = playerHand
@@ -62,8 +66,8 @@ function blackjackCheck(){
 }
 
 function displayHandValues(){
-  dealerHandValueDisplay.innerHTML = `dealer shows: ${dealerHandValue()}`
-  playerHandValueDisplay.innerHTML = `player shows: ${playerHandValue()}`
+  displayDealerHandValue.innerHTML = `dealer shows: ${dealerHandValue()}`
+  displayerPlayerHandValue.innerHTML = `player shows: ${playerHandValue()}`
 }
 
 function createDeck(){
@@ -84,7 +88,7 @@ function shuffleDeck(){
   }
 }
 
-function dealHands(){
+function dealCards(){
   playerHand.push(deck[0],deck[2])
   dealerHand.push(deck[1],deck[3]) 
 }
