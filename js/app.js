@@ -89,8 +89,10 @@ function shuffleDeck(){
 }
 
 function dealCards(){
-  playerHand.push(deck[0],deck[2])
-  dealerHand.push(deck[1],deck[3]) 
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
 }
 
 function cardToPoints(card){
