@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 const cards = ['A' , '2' , '3' , '4' , '5' , '6' , '7' , '8' , '9', 'T', 'J' , 'Q' , 'K']
-const suits = ['H' , 'D' , 'C' , 'S'] // Hearts, Diamonds, Clovers, Spades
+const suits = ['h' , 'd' , 'c' , 's'] // Hearts, Diamonds, Clovers, Spades
 /*---------------------------- Variables (state) ----------------------------*/
 let deck = []
 let playerHand = []
@@ -114,7 +114,7 @@ function displayHandValues(){
 function createDeck(){
   for (let i = 0 ; i < cards.length ; i++){
     for (let v = 0 ; v < suits.length ; v++){
-     deck.push(cards[i] + suits[v])
+     deck.push(suits[v] + cards[i])
     }
   }
 }
@@ -149,14 +149,14 @@ function cardToPoints(card){
 }
 
 function playerHandValue() {
-  let stringValues = playerHand.map(string => string.substring(0,1));
+  let stringValues = playerHand.map(string => string.substring(1,2));
   let cardValues = stringValues.map(cardToPoints)
   let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
   return totalHandValue
 }
 
 function dealerHandValue() {
-  let stringValues = dealerHand.map(string => string.substring(0,1));
+  let stringValues = dealerHand.map(string => string.substring(1,2));
   let cardValues = stringValues.map(cardToPoints)
   let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
   return totalHandValue
