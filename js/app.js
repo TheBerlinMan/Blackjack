@@ -16,7 +16,12 @@ let displayDealerHandValue = document.getElementById('dealer-hand-value')
 let displayerPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
 let displayDealerHand = document.getElementById('dealer-cards')
-let resultMessage = document.getElementById('result-message')
+let statusMessage = document.getElementById('game-status')
+let purseValue = document.getElementById('purse-value')
+let currentBet = document.getElementById('current-bet')
+let betInput = document.getElementById('bet-input')
+let betBtn = document.getElementById('bet-button')
+
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -71,7 +76,7 @@ function dealCard(){
   // add functionality to stop allowing hit after 21 and switch turn to dealer
   let newCard = playerHand.push(deck.splice(0,1)[0])
   if(playerHandValue() > 21){
-    resultMessage.innerHTML=`player busts`
+    statusMessage.innerHTML=`player busts`
   }
   render(newCard)
 }
@@ -91,13 +96,13 @@ function displayCards(){
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
-    resultMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
+    statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
   } else if (dealerHandValue() === 21) {
-    resultMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
+    statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
   } else if (playerHandValue() === 21) {
-    resultMessage.innerHTML = 'Player has Blackjack! Player wins!'
+    statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
   } else {
-    resultMessage.innerHTML = ''
+    statusMessage.innerHTML = ''
   }
 }
 
