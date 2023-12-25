@@ -1,6 +1,7 @@
 
 body{
   background-color: green;
+  font-family: sans-serif;
 }
 
 h1{
@@ -17,7 +18,7 @@ h1{
 }
 
 
-#blackjack-rules > h3{
+.table-center > h3{
 
   border: 3px solid black;
   color: maroon;
@@ -25,8 +26,9 @@ h1{
   margin: 0;
 }
 
-#blackjack-rules > h5{
+.table-center > h5{
   margin: 0;
+  padding: 0;
 }
 
 .status-bar{
@@ -46,4 +48,15 @@ h1{
   display: flex;
   justify-content: center;
   padding: 16px;
+}
+
+.hand-value{
+  font-size: 12px;
+  font-weight: 400;
+  margin: 3px;
+  padding: 3px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  border-radius: 4px;
 }

@@ -89,9 +89,21 @@ function render(newCard){
 
 function displayCards(){
   displayDealerHand.innerHTML = dealerHand
-  displayDealerHand.style.color = 'red'
+  // displayDealerHand.style.color = 'red'
   displayPlayerHand.innerHTML = playerHand
 }
+
+
+// function valueToCard(){
+//   let newDiv = document.createElement('div')
+//   for (let i = 0 ; i < dealerHand.length ; i++){
+//     displayDealerHand.appendChild(newDiv)
+//     newDiv.className = `card ${dealerHand[i]}`
+//   }
+// }
+
+  
+
 
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
@@ -107,8 +119,8 @@ function blackjackCheck(){
 }
 
 function displayHandValues(){
-  displayDealerHandValue.innerHTML = `dealer shows: ${dealerHandValue()}`
-  displayerPlayerHandValue.innerHTML = `player shows: ${playerHandValue()}`
+  displayDealerHandValue.innerHTML = `${dealerHandValue()}`
+  displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
 }
 
 function createDeck(){
