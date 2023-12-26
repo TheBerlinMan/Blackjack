@@ -29,20 +29,20 @@ let secondPhaseEls = document.querySelectorAll('.second')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-// dealBtn.addEventListener('click', playRound)
-// hitBtn.addEventListener('click', dealCard)
-// stayBtn.addEventListener('click', dealerTurn)
-//betBtn.addEventListener('cick',updateBet)
-sitDownBtn.addEventListener('click', startGame)
+dealBtn.addEventListener('click', playRound)
+hitBtn.addEventListener('click', dealCard)
+stayBtn.addEventListener('click', dealerTurn)
+betBtn.addEventListener('click',updateBet)
+// sitDownBtn.addEventListener('click', startGame)
 
 /*-------------------------------- Functions --------------------------------*/
 
-function startGame(){
-  sitDownBtn.style.display = 'none'
-  for (let element of secondPhaseEls){
-    element.style.display = "block"
-  }
-}
+// function startGame(){
+//   sitDownBtn.style.display = 'none'
+//   for (let element of secondPhaseEls){
+//     element.style.display = "block"
+//   }
+// }
 
 // to be done:
 //// - add hit functionality
@@ -56,10 +56,10 @@ function startGame(){
 // - new game functionality (add button in HTML too) 
 // - adjust ace to be 1 or 11 and effected code
 
-// function render(){
-//   displayCards()
-//   displayHandValues()
-// }
+function render(){
+  displayCards()
+  displayHandValues()
+}
 
 
 
@@ -67,19 +67,19 @@ function startGame(){
 
 
 
-// function playRound(){
-//   playerHand = []
-//   dealerHand = []
-//   deck = []
-//   createDeck()
-//   shuffleDeck()
-//   dealCards()
-//   displayCards()
-//   displayHandValues()
-//   blackjackCheck()
-//   // determineWinner()
+function playRound(){
+  playerHand = []
+  dealerHand = []
+  deck = []
+  createDeck()
+  shuffleDeck()
+  dealCards()
+  displayCards()
+  displayHandValues()
+  blackjackCheck()
+  // determineWinner()
 
-// }
+}
 
 
 //determine winner
@@ -103,133 +103,131 @@ function startGame(){
 
 
 
-// function updateBet(){
-//   let newBet = betInput.value
-//   console.log(newBet);
-//   currentBet.innerHTML = `current bet: ${newBet}`
-//   render()
+function updateBet(){
+  bet = betInput.value
+  currentBet.innerHTML = `Current bet: $${bet}`
+}
+
+
+function dealerTurn(){
+  // this can be made into a loop... possible for ... while? need to investigate 
+  // would also be nice to delay each draw somehow
+  if(dealerHandValue() < 17){
+    dealerHand.push(deck.splice(0,1)[0])
+  }
+  if(dealerHandValue() < 17){
+    dealerHand.push(deck.splice(0,1)[0])
+  }
+  if(dealerHandValue() < 17){
+    dealerHand.push(deck.splice(0,1)[0])
+  }
+  if(dealerHandValue() > 21){
+    playerWins = true
+  }
+  render()
+}
+
+function dealCard(){
+  // add functionality to stop allowing hit after 21 and switch turn to dealer
+  let newCard = playerHand.push(deck.splice(0,1)[0])
+  if(playerHandValue() > 21){
+    dealerWins = true
+    statusMessage.innerHTML=`player busts`
+  }
+  render(newCard)
+}
+
+
+
+
+function displayCards(){
+  displayDealerHand.innerHTML = dealerHand
+  // displayDealerHand.style.color = 'red'
+  displayPlayerHand.innerHTML = playerHand
+}
+
+
+// function valueToCard(){
+//   let newDiv = document.createElement('div')
+//   for (let i = 0 ; i < dealerHand.length ; i++){
+//     displayDealerHand.appendChild(newDiv)
+//     newDiv.className = `card ${dealerHand[i]}`
+//   }
 // }
-
-
-// function dealerTurn(){
-//   // this can be made into a loop... possible for ... while? need to investigate 
-//   // would also be nice to delay each draw somehow
-//   if(dealerHandValue() < 17){
-//     dealerHand.push(deck.splice(0,1)[0])
-//   }
-//   if(dealerHandValue() < 17){
-//     dealerHand.push(deck.splice(0,1)[0])
-//   }
-//   if(dealerHandValue() < 17){
-//     dealerHand.push(deck.splice(0,1)[0])
-//   }
-//   if(dealerHandValue() > 21){
-//     playerWins = true
-//   }
-//   render()
-// }
-
-// function dealCard(){
-//   // add functionality to stop allowing hit after 21 and switch turn to dealer
-//   let newCard = playerHand.push(deck.splice(0,1)[0])
-//   if(playerHandValue() > 21){
-//     dealerWins = true
-//     statusMessage.innerHTML=`player busts`
-//   }
-//   render(newCard)
-// }
-
-
-
-
-// function displayCards(){
-//   displayDealerHand.innerHTML = dealerHand
-//   // displayDealerHand.style.color = 'red'
-//   displayPlayerHand.innerHTML = playerHand
-// }
-
-
-// // function valueToCard(){
-// //   let newDiv = document.createElement('div')
-// //   for (let i = 0 ; i < dealerHand.length ; i++){
-// //     displayDealerHand.appendChild(newDiv)
-// //     newDiv.className = `card ${dealerHand[i]}`
-// //   }
-// // }
 
   
 
 
-// function blackjackCheck(){
-//   // need to add purse & bet variables, and then adjust based on blackjack result
-//   if(playerHandValue() === 21 & dealerHandValue() === 21) {
-//     playerPushes = true
-//     statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
-//   } else if (dealerHandValue() === 21) {
-//     dealerWins = true
-//     statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
-//   } else if (playerHandValue() === 21) {
-//     playerWins = true
-//     statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
-//   } else {
-//     statusMessage.innerHTML = ''
-//   }
-// }
+function blackjackCheck(){
+  // need to add purse & bet variables, and then adjust based on blackjack result
+  if(playerHandValue() === 21 & dealerHandValue() === 21) {
+    playerPushes = true
+    statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
+  } else if (dealerHandValue() === 21) {
+    dealerWins = true
+    statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
+  } else if (playerHandValue() === 21) {
+    playerWins = true
+    statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
+  } else {
+    statusMessage.innerHTML = ''
+  }
+}
 
-// function displayHandValues(){
-//   displayDealerHandValue.innerHTML = `${dealerHandValue()}`
-//   displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
-// }
+function displayHandValues(){
+  displayDealerHandValue.innerHTML = `${dealerHandValue()}`
+  displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
+}
 
-// function createDeck(){
-//   for (let i = 0 ; i < cards.length ; i++){
-//     for (let v = 0 ; v < suits.length ; v++){
-//      deck.push(suits[v] + cards[i])
-//     }
-//   }
-// }
+function createDeck(){
+  for (let i = 0 ; i < cards.length ; i++){
+    for (let v = 0 ; v < suits.length ; v++){
+     deck.push(suits[v] + cards[i])
+    }
+  }
+}
 
-// function shuffleDeck(){
-//   for (let i = 0 ; i < deck.length ; i++){
-//     let tempCard = deck[i]
-//     let randomIndex = Math.floor(Math.random() * 52)
-//     deck[i] = deck[randomIndex]
-//     deck[randomIndex] = tempCard
-//   }
-// }
+function shuffleDeck(){
+  for (let i = 0 ; i < deck.length ; i++){
+    let tempCard = deck[i]
+    let randomIndex = Math.floor(Math.random() * 52)
+    deck[i] = deck[randomIndex]
+    deck[randomIndex] = tempCard
+  }
+}
 
-// function dealCards(){
-//   playerHand.push(deck.splice(0,1)[0])
-//   dealerHand.push(deck.splice(0,1)[0]) 
-//   playerHand.push(deck.splice(0,1)[0])
-//   dealerHand.push(deck.splice(0,1)[0]) 
-// }
+function dealCards(){
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+}
 
-// function cardToPoints(card){
-//   if(card === 'A') {
-//     return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
-//   } else if (card === 'T' ||
-//              card === 'J' ||
-//              card === 'Q' ||
-//              card === 'K' ){  
-//     return 10
-//   } else  {
-//     return parseInt(card)
-//   }
-// }
+function cardToPoints(card){
+  if(card === 'A') {
+    return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
+  } else if (card === 'T' ||
+             card === 'J' ||
+             card === 'Q' ||
+             card === 'K' ){  
+    return 10
+  } else  {
+    return parseInt(card)
+  }
+}
 
-// function playerHandValue() {
-//   let stringValues = playerHand.map(string => string.substring(1,2));
-//   let cardValues = stringValues.map(cardToPoints)
-//   let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-//   return totalHandValue
-// }
+function playerHandValue() {
+  let stringValues = playerHand.map(string => string.substring(1,2));
+  let cardValues = stringValues.map(cardToPoints)
+  let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return totalHandValue
+}
 
-// function dealerHandValue() {
-//   let stringValues = dealerHand.map(string => string.substring(1,2));
-//   let cardValues = stringValues.map(cardToPoints)
-//   let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-//   return totalHandValue
-// }
+function dealerHandValue() {
+  let stringValues = dealerHand.map(string => string.substring(1,2));
+  let cardValues = stringValues.map(cardToPoints)
+  let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return totalHandValue
+}
 
 
