@@ -25,7 +25,8 @@ let purseValue = document.getElementById('purse-value')
 let currentBet = document.getElementById('current-bet')
 let betInput = document.getElementById('bet-input')
 let betBtn = document.getElementById('bet-button')
-let secondPhaseEls = document.querySelectorAll('.second')
+// let secondPhaseEls = document.querySelectorAll('.second')
+let testMessage = document.getElementById('test-message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -77,27 +78,33 @@ function playRound(){
   displayCards()
   displayHandValues()
   blackjackCheck()
-  // determineWinner()
+  determineWinner()
+  // updatePurse()
 
 }
 
 
 //determine winner
 
-// function determineWinner(){
+function determineWinner(){
+  if (playerWins = true) {
+    // purse += bet
+    testMessage.innerHTML = 'player wins'
+  } else if (dealerWins = true) {
+    testMessage.innerHTML = 'player loses'
+    // purse -= bet
+    // bet = 0
+  } else if (playerPushes = true){
+    testMessage.innerHTML = 'player pushes'
+  }else {
+    testMessage.innerHTML = ''
+  }
+}
 
-//   if(dealerHandValue() > playerHandValue()){
-//     statusMessage.innerHTML = `Dealer wins.`
-//   } else if(playerHandValue() > dealerHandValue()){
-//     statusMessage.innerHTML = `Player wins`
-//   } else {
-//     statusMessage.innerHTML = 'Player pushes'
-//   }
 
+// function updatePurse(){
+//   purseValue.innerHTML = `Purse: $${purse}`
 // }
-
-
-
 
 
 
@@ -110,21 +117,20 @@ function updateBet(){
 
 
 function dealerTurn(){
-  // this can be made into a loop... possible for ... while? need to investigate 
-  // would also be nice to delay each draw somehow
-  if(dealerHandValue() < 17){
-    dealerHand.push(deck.splice(0,1)[0])
-  }
-  if(dealerHandValue() < 17){
-    dealerHand.push(deck.splice(0,1)[0])
-  }
-  if(dealerHandValue() < 17){
-    dealerHand.push(deck.splice(0,1)[0])
-  }
+  
+  while (dealerHandValue() < 17) {
+      dealerHand.push(deck.splice(0,1)[0])
+  } 
+  render()
+  
   if(dealerHandValue() > 21){
     playerWins = true
+  } else if (dealerHandValue() > playerHandValue()){
+    dealerWins = true
+  } else if (dealerHandValue() = playerHandValue()){
+    playerPushes = true
   }
-  render()
+  determineWinner()
 }
 
 function dealCard(){
