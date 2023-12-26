@@ -29,6 +29,7 @@ let betBtn = document.getElementById('bet-button')
 dealBtn.addEventListener('click', playRound)
 hitBtn.addEventListener('click', dealCard)
 stayBtn.addEventListener('click', dealerTurn)
+//betBtn.addEventListener('cick',updateBet)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -37,7 +38,7 @@ stayBtn.addEventListener('click', dealerTurn)
 //// - add stay functionality (switch to dealer turn)
 //// - dealers turn
 // - decide winner
-// - add purse, bet variables in JS, bet input element in HTML
+//// - add purse, bet variables in JS, bet input element in HTML
 // - adjust code to include winning/losing of bet 
 // - style
 // - walk away functionality (add button in HTML too) 
@@ -54,7 +55,38 @@ function playRound(){
   displayCards()
   displayHandValues()
   blackjackCheck()
+  // determineWinner()
+
 }
+
+
+//determine winner
+
+// function determineWinner(){
+
+//   if(dealerHandValue() > playerHandValue()){
+//     statusMessage.innerHTML = `Dealer wins.`
+//   } else if(playerHandValue() > dealerHandValue()){
+//     statusMessage.innerHTML = `Player wins`
+//   } else {
+//     statusMessage.innerHTML = 'Player pushes'
+//   }
+
+// }
+
+
+
+
+
+
+
+
+// function updateBet(){
+//   let newBet = betInput.value
+//   console.log(newBet);
+//   currentBet.innerHTML = `current bet: ${newBet}`
+//   render()
+// }
 
 
 function dealerTurn(){
