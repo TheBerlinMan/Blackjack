@@ -45,28 +45,10 @@ betBtn.addEventListener('click',updateBet)
 //   }
 // }
 
-// to be done:
-//// - add hit functionality
-//// - add stay functionality (switch to dealer turn)
-//// - dealers turn
-// - decide winner
-//// - add purse, bet variables in JS, bet input element in HTML
-// - adjust code to include winning/losing of bet 
-// - style
-// - walk away functionality (add button in HTML too) 
-// - new game functionality (add button in HTML too) 
-// - adjust ace to be 1 or 11 and effected code
-
 function render(){
   displayCards()
   displayHandValues()
 }
-
-
-
-
-
-
 
 function playRound(){
   playerHand = []
@@ -78,80 +60,59 @@ function playRound(){
   displayCards()
   displayHandValues()
   blackjackCheck()
-  determineWinner()
+  // determineWinner()
   // updatePurse()
 
 }
 
-
 //determine winner
 
-function determineWinner(){
-  if (playerWins = true) {
-    // purse += bet
-    testMessage.innerHTML = 'player wins'
-  } else if (dealerWins = true) {
-    testMessage.innerHTML = 'player loses'
-    // purse -= bet
-    // bet = 0
-  } else if (playerPushes = true){
-    testMessage.innerHTML = 'player pushes'
-  }else {
-    testMessage.innerHTML = ''
-  }
-}
+// function determineWinner(){
+//   if (playerWins = true) {
+//     // purse += bet
+//     testMessage.innerHTML = 'player wins'
+//   } else if (dealerWins = true) {
+//     testMessage.innerHTML = 'player loses'
+//     // purse -= bet
+//     // bet = 0
+//   } else if (playerPushes = true){
+//     testMessage.innerHTML = 'player pushes'
+//   }else {
+//     testMessage.innerHTML = ''
+//   }
+// }
 
 
 // function updatePurse(){
 //   purseValue.innerHTML = `Purse: $${purse}`
 // }
 
-
-
-
-
 function updateBet(){
   bet = betInput.value
   currentBet.innerHTML = `Current bet: $${bet}`
 }
 
-
 function dealerTurn(){
-  
   while (dealerHandValue() < 17) {
       dealerHand.push(deck.splice(0,1)[0])
   } 
   render()
-  
-  if(dealerHandValue() > 21){
-    playerWins = true
-  } else if (dealerHandValue() > playerHandValue()){
-    dealerWins = true
-  } else if (dealerHandValue() = playerHandValue()){
-    playerPushes = true
-  }
-  determineWinner()
 }
 
 function dealCard(){
   // add functionality to stop allowing hit after 21 and switch turn to dealer
   let newCard = playerHand.push(deck.splice(0,1)[0])
   if(playerHandValue() > 21){
-    dealerWins = true
     statusMessage.innerHTML=`player busts`
   }
   render(newCard)
 }
-
-
-
 
 function displayCards(){
   displayDealerHand.innerHTML = dealerHand
   // displayDealerHand.style.color = 'red'
   displayPlayerHand.innerHTML = playerHand
 }
-
 
 // function valueToCard(){
 //   let newDiv = document.createElement('div')
@@ -161,19 +122,13 @@ function displayCards(){
 //   }
 // }
 
-  
-
-
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
-    playerPushes = true
     statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
   } else if (dealerHandValue() === 21) {
-    dealerWins = true
     statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
   } else if (playerHandValue() === 21) {
-    playerWins = true
     statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
   } else {
     statusMessage.innerHTML = ''
@@ -209,6 +164,20 @@ function dealCards(){
   dealerHand.push(deck.splice(0,1)[0]) 
 }
 
+function playerHandValue() {
+  let isoNum = playerHand.map(string => string.substring(1,2));
+  let cardValues = isoNum.map(cardToPoints)
+  let playerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return playerHandValue
+}
+
+function dealerHandValue() {
+  let isoNum = dealerHand.map(string => string.substring(1,2));
+  let cardValues = isoNum.map(cardToPoints)
+  let dealerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return dealerHandValue
+}
+
 function cardToPoints(card){
   if(card === 'A') {
     return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
@@ -220,20 +189,6 @@ function cardToPoints(card){
   } else  {
     return parseInt(card)
   }
-}
-
-function playerHandValue() {
-  let stringValues = playerHand.map(string => string.substring(1,2));
-  let cardValues = stringValues.map(cardToPoints)
-  let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-  return totalHandValue
-}
-
-function dealerHandValue() {
-  let stringValues = dealerHand.map(string => string.substring(1,2));
-  let cardValues = stringValues.map(cardToPoints)
-  let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-  return totalHandValue
 }
 
 
