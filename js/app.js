@@ -25,6 +25,7 @@ let purseValue = document.getElementById('purse-value')
 let currentBet = document.getElementById('current-bet')
 let betInput = document.getElementById('bet-input')
 let betBtn = document.getElementById('bet-button')
+let secondPhaseEls = document.querySelectorAll('.second')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -32,8 +33,16 @@ let betBtn = document.getElementById('bet-button')
 // hitBtn.addEventListener('click', dealCard)
 // stayBtn.addEventListener('click', dealerTurn)
 //betBtn.addEventListener('cick',updateBet)
+sitDownBtn.addEventListener('click', startGame)
 
 /*-------------------------------- Functions --------------------------------*/
+
+function startGame(){
+  sitDownBtn.style.display = 'none'
+  for (let element of secondPhaseEls){
+    element.style.display = "block"
+  }
+}
 
 // to be done:
 //// - add hit functionality
@@ -222,3 +231,5 @@ let betBtn = document.getElementById('bet-button')
 //   let totalHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
 //   return totalHandValue
 // }
+
+
