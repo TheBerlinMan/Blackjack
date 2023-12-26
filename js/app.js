@@ -7,6 +7,10 @@ let playerHand = []
 let dealerHand = []
 let purse = 500
 let bet
+let playerBusted = false
+let dealerBusted = false
+let dealerWins = false
+let playerWins = false
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
@@ -21,8 +25,6 @@ let purseValue = document.getElementById('purse-value')
 let currentBet = document.getElementById('current-bet')
 let betInput = document.getElementById('bet-input')
 let betBtn = document.getElementById('bet-button')
-
-
 
 /*----------------------------- Event Listeners -----------------------------*/
 
