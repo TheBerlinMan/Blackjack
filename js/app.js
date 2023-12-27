@@ -5,17 +5,19 @@ const suits = ['h' , 'd' , 'c' , 's'] // Hearts, Diamonds, Clovers, Spades
 let deck = []
 let playerHand = []
 let dealerHand = []
-let purse = 500
-let bet
-// let dealerBusted = false
-// let playerBusted = false
-// let playerPushes = false
+// let purse = 500
+// let bet
+let dealerBusted = false
+let playerBusted = false
+let playerPushes = false
+let playerWins = false
+let dealerWins = false
 /*------------------------ Cached Element References ------------------------*/
 
-// let hitBtn = document.getElementById('hit-button')
-// let dealBtn = document.getElementById('deal-button')
+let hitBtn = document.getElementById('hit-button')
+let dealBtn = document.getElementById('deal-button')
 // let stayBtn = document.getElementById('stay-button')
-// // let sitDownBtn = document.getElementById('sit-down-button')
+// let sitDownBtn = document.getElementById('sit-down-button')
 // let displayDealerHandValue = document.getElementById('dealer-hand-value')
 // let displayerPlayerHandValue = document.getElementById('player-hand-value')
 // let displayPlayerHand = document.getElementById('player-cards')
@@ -25,13 +27,13 @@ let bet
 // let currentBet = document.getElementById('current-bet')
 // let betInput = document.getElementById('bet-input')
 // let betBtn = document.getElementById('bet-button')
-// // let secondPhaseEls = document.querySelectorAll('.second')
+// let secondPhaseEls = document.querySelectorAll('.second')
 // let testMessage = document.getElementById('test-message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-// dealBtn.addEventListener('click', playRound)
-// hitBtn.addEventListener('click', dealCard)
+dealBtn.addEventListener('click', playRound)
+hitBtn.addEventListener('click', hit)
 // stayBtn.addEventListener('click', dealerTurn)
 // betBtn.addEventListener('click',updateBet)
 // sitDownBtn.addEventListener('click', startGame)
@@ -51,22 +53,7 @@ let bet
 //   displayButtons()
 // }
 
-// function playRound(){
-//   playerHand = []
-//   dealerHand = []
-//   deck = []
-//   createDeck()
-//   shuffleDeck()
-//   dealCards()
-//   displayCards()
-//   displayHandValues()
-//   //blackjackCheck()
-//   // determineWinner()
-//   // updatePurse()
-//   // endRound()
-//   // console.log(playerHandValue());
 
-// }
 
 
 //determine winner
@@ -149,18 +136,27 @@ let bet
 //   }
 // }
 
-// function blackjackCheck(){
-//   // need to add purse & bet variables, and then adjust based on blackjack result
-//   if(playerHandValue() === 21 & dealerHandValue() === 21) {
-//     statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
-//   } else if (dealerHandValue() === 21) {
-//     statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
-//   } else if (playerHandValue() === 21) {
-//     statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
-//   } else {
-//     statusMessage.innerHTML = ''
-//   }
-// }
+function blackjackCheck(){
+  // need to add purse & bet variables, and then adjust based on blackjack result
+  if(playerHandValue() === 21 & dealerHandValue() === 21) {
+    // statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
+    playerWins = true
+    dealerWins = true
+    console.log('player and dealer have blackjack');
+  } else if (dealerHandValue() === 21) {
+    // statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
+    dealerWins = true
+    console.log('dealer has blackjack');
+    console.log(dealerWins);
+  } else if (playerHandValue() === 21) {
+    // statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
+    playerWins = true
+    console.log('player has blackjack');
+    console.log(playerWins);
+  } else {
+    // statusMessage.innerHTML = ''
+  }
+}
 
 // function displayHandValues(){
 //   displayDealerHandValue.innerHTML = `${dealerHandValue()}`
@@ -184,38 +180,68 @@ function shuffleDeck(){
   }
 }
 
-// function dealCards(){
-//   playerHand.push(deck.splice(0,1)[0])
-//   dealerHand.push(deck.splice(0,1)[0]) 
-//   playerHand.push(deck.splice(0,1)[0])
-//   dealerHand.push(deck.splice(0,1)[0]) 
-// }
+function dealCards(){
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+}
 
-// function playerHandValue() {
-//   let isoNum = playerHand.map(string => string.substring(1,2));
-//   let cardValues = isoNum.map(cardToPoints)
-//   let playerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-//   return playerHandValue
-// }
 
-// function dealerHandValue() {
-//   let isoNum = dealerHand.map(string => string.substring(1,2));
-//   let cardValues = isoNum.map(cardToPoints)
-//   let dealerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-//   return dealerHandValue
-// }
+function playRound(){
+  playerHand = []
+  dealerHand = []
+  deck = []
+  createDeck()
+  shuffleDeck()
+  dealCards()
+  console.log(playerHand);
+  console.log(dealerHand);
+  console.log(`players hand ${playerHandValue()}`);
+  console.log(`dealers hand ${dealerHandValue()}`);
+  // displayCards()
+  // displayHandValues()
+  blackjackCheck()
+  // determineWinner()
+  // updatePurse()
+  // endRound()
+  // console.log(playerHandValue());
 
-// function cardToPoints(card){
-//   if(card === 'A') {
-//     return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
-//   } else if (card === 'T' ||
-//              card === 'J' ||
-//              card === 'Q' ||
-//              card === 'K' ){  
-//     return 10
-//   } else  {
-//     return parseInt(card)
-//   }
-// }
+}
+
+function hit(){
+  playerHand.push(deck.splice(0,1)[0])
+  console.log(playerHand);
+  console.log(playerHandValue());
+}
+
+
+function playerHandValue() {
+  let isoNum = playerHand.map(string => string.substring(1,2));
+  let cardValues = isoNum.map(cardToPoints)
+  let playerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return playerHandValue
+}
+
+
+function dealerHandValue() {
+  let isoNum = dealerHand.map(string => string.substring(1,2));
+  let cardValues = isoNum.map(cardToPoints)
+  let dealerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return dealerHandValue
+}
+
+function cardToPoints(card){
+  if(card === 'A') {
+    return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
+  } else if (card === 'T' ||
+             card === 'J' ||
+             card === 'Q' ||
+             card === 'K' ){  
+    return 10
+  } else  {
+    return parseInt(card)
+  }
+}
 
 
