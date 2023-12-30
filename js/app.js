@@ -16,12 +16,12 @@ let dealerWins = false
 
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
-// let stayBtn = document.getElementById('stay-button')
+let stayBtn = document.getElementById('stay-button')
 // let sitDownBtn = document.getElementById('sit-down-button')
-// let displayDealerHandValue = document.getElementById('dealer-hand-value')
-// let displayerPlayerHandValue = document.getElementById('player-hand-value')
-// let displayPlayerHand = document.getElementById('player-cards')
-// let displayDealerHand = document.getElementById('dealer-cards')
+let displayDealerHandValue = document.getElementById('dealer-hand-value')
+let displayerPlayerHandValue = document.getElementById('player-hand-value')
+let displayPlayerHand = document.getElementById('player-cards')
+let displayDealerHand = document.getElementById('dealer-cards')
 // let statusMessage = document.getElementById('game-status')
 // let purseValue = document.getElementById('purse-value')
 // let currentBet = document.getElementById('current-bet')
@@ -34,7 +34,7 @@ let dealBtn = document.getElementById('deal-button')
 
 dealBtn.addEventListener('click', playRound)
 hitBtn.addEventListener('click', hit)
-// stayBtn.addEventListener('click', dealerTurn)
+stayBtn.addEventListener('click', dealerTurn)
 // betBtn.addEventListener('click',updateBet)
 // sitDownBtn.addEventListener('click', startGame)
 
@@ -47,11 +47,7 @@ hitBtn.addEventListener('click', hit)
 //   }
 // }
 
-// function render(){
-//   displayCards()
-//   displayHandValues()
-//   displayButtons()
-// }
+
 
 
 
@@ -83,12 +79,21 @@ hitBtn.addEventListener('click', hit)
 //   currentBet.innerHTML = `Current bet: $${bet}`
 // }
 
-// function dealerTurn(){
-//   while (dealerHandValue() < 17) {
-//       dealerHand.push(deck.splice(0,1)[0])
-//   } 
-//   render()
-// }
+function dealerTurn(){
+  if (playerHandValue() < 21){
+    while (dealerHandValue() < 17) {
+        dealerHand.push(deck.splice(0,1)[0])
+        render()
+      } 
+      if (dealerHandValue() >= 22){
+        console.log(`dealer busts`);
+      }
+  } else {console.log(`no need to deal player busted.`);}
+  console.log(dealerHandValue());
+  console.log(dealerHand);
+  
+  // render()
+}
 
 
 // function endRound() {
@@ -122,11 +127,20 @@ hitBtn.addEventListener('click', hit)
 //   render()
 // }
 
-// function displayCards(){
-//   displayDealerHand.innerHTML = dealerHand
-//   // displayDealerHand.style.color = 'red'
-//   displayPlayerHand.innerHTML = playerHand
-// }
+
+function render(){
+  displayCards()
+  displayHandValues()
+  // displayButtons()
+}
+
+function displayCards(){
+  
+  displayDealerHand.innerHTML = dealerHand
+  // displayDealerHand.style.color = 'red'
+  displayPlayerHand.innerHTML = playerHand
+
+}
 
 // function valueToCard(){
 //   let newDiv = document.createElement('div')
@@ -158,10 +172,10 @@ function blackjackCheck(){
   }
 }
 
-// function displayHandValues(){
-//   displayDealerHandValue.innerHTML = `${dealerHandValue()}`
-//   displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
-// }
+function displayHandValues(){
+  displayDealerHandValue.innerHTML = `${dealerHandValue()}`
+  displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
+}
 
 function createDeck(){
   for (let i = 0 ; i < cards.length ; i++){
@@ -202,15 +216,23 @@ function playRound(){
   // displayCards()
   // displayHandValues()
   blackjackCheck()
+  render()
   // determineWinner()
   // updatePurse()
   // endRound()
   // console.log(playerHandValue());
+  // render()
 
 }
 
 function hit(){
+  
   playerHand.push(deck.splice(0,1)[0])
+  if (playerHandValue() >= 22) {
+    dealerTurn()
+  } 
+
+  render()
   console.log(playerHand);
   console.log(playerHandValue());
 }
@@ -222,7 +244,6 @@ function playerHandValue() {
   let playerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
   return playerHandValue
 }
-
 
 function dealerHandValue() {
   let isoNum = dealerHand.map(string => string.substring(1,2));
