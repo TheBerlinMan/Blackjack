@@ -57,6 +57,33 @@ stayBtn.addEventListener('click', dealerTurn)
 //   currentBet.innerHTML = `Current bet: $${bet}`
 // }
 
+function playRound(){
+  playerHand = []
+  dealerHand = []
+  deck = []
+  dealerWon = false
+  playerWon = false
+  playerBusted = false
+  dealerBusted = false
+  createDeck()
+  shuffleDeck()
+  dealCards()
+  blackjackCheck()
+  render()
+  // updatePurse()
+}
+
+function hit(){
+
+  playerHand.push(deck.splice(0,1)[0])
+  if (playerHandValue() >= 22) {
+    playerBusted = true
+    dealerTurn()
+  } 
+
+  render()
+}
+
 function dealerTurn(){
   if (playerHandValue() <= 21){
     while (dealerHandValue() < 17) {
@@ -76,7 +103,6 @@ function dealerTurn(){
   if(!playerBusted && !dealerBusted){
     bothStay()
   }
-  
   
   render()
 }
@@ -98,10 +124,8 @@ function bothStay(){
 function endRound() {
   if (dealerWon) {
     score --
-    console.log(score);
   } else if (playerWon) {
     score ++
-    console.log(score);
   } else if (playerWon && dealerWon){
     console.log(`player pushses`);;
   }
@@ -112,22 +136,6 @@ function render(){
   displayHandValues()
   displayScore()
 }
-
-function displayCards(){
-  
-  displayDealerHand.innerHTML = dealerHand
-  // displayDealerHand.style.color = 'red'
-  displayPlayerHand.innerHTML = playerHand
-
-}
-
-// function valueToCard(){
-//   let newDiv = document.createElement('div')
-//   for (let i = 0 ; i < dealerHand.length ; i++){
-//     displayDealerHand.appendChild(newDiv)
-//     newDiv.className = `card ${dealerHand[i]}`
-//   }
-// }
 
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
@@ -160,6 +168,26 @@ function displayHandValues(){
   displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
 }
 
+function displayCards(){
+  
+  displayDealerHand.innerHTML = dealerHand
+  // displayDealerHand.style.color = 'red'
+  displayPlayerHand.innerHTML = playerHand
+
+}
+
+// function valueToCard(){
+//   let newDiv = document.createElement('div')
+//   for (let i = 0 ; i < dealerHand.length ; i++){
+//     displayDealerHand.appendChild(newDiv)
+//     newDiv.className = `card ${dealerHand[i]}`
+//   }
+// }
+
+function displayScore(){
+  statusMessage.innerHTML = `score: ${score}`
+}
+
 function createDeck(){
   for (let i = 0 ; i < cards.length ; i++){
     for (let v = 0 ; v < suits.length ; v++){
@@ -183,50 +211,6 @@ function dealCards(){
   playerHand.push(deck.splice(0,1)[0])
   dealerHand.push(deck.splice(0,1)[0]) 
 }
-
-
-function playRound(){
-  playerHand = []
-  dealerHand = []
-  deck = []
-  dealerWon = false
-  playerWon = false
-  playerBusted = false
-  dealerBusted = false
-  createDeck()
-  shuffleDeck()
-  dealCards()
-  console.log(playerHand);
-  console.log(dealerHand);
-  console.log(`players hand ${playerHandValue()}`);
-  console.log(`dealers hand ${dealerHandValue()}`);
-  // displayCards()
-  // displayHandValues()
-  blackjackCheck()
-  render()
-  // determineWinner()
-  // updatePurse()
-  // endRound()
-  console.log(score);
-}
-
-function displayScore(){
-  statusMessage.innerHTML = `score: ${score}`
-}
-
-function hit(){
-  
-  playerHand.push(deck.splice(0,1)[0])
-  if (playerHandValue() >= 22) {
-    playerBusted = true
-    dealerTurn()
-  } 
-
-  render()
-  console.log(playerHand);
-  console.log(playerHandValue());
-}
-
 
 function playerHandValue() {
   let isoNum = playerHand.map(string => string.substring(1,2));
