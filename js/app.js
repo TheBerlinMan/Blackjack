@@ -138,6 +138,7 @@ function bothStay(){
 }
 
 function endRound() {
+  // purse currently pays 1:1 even for blackjack. need to adjust for blackjack case. 
   bet = betInput.value
   if(playerWon && dealerWon){
     score 
@@ -145,7 +146,7 @@ function endRound() {
     console.log(purse);
   } else if(dealerWon){
     score --
-    purse = purse - bet
+    purse = parseInt(purse) - parseInt(bet)
     console.log(purse);
   } else if(playerWon){
     score ++
