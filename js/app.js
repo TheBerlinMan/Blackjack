@@ -5,8 +5,8 @@ const suits = ['h' , 'd' , 'c' , 's'] // Hearts, Diamonds, Clovers, Spades
 let deck = []
 let playerHand = []
 let dealerHand = []
-// let purse = 500
-// let bet
+let purse = 500
+let bet
 let playerWon = false
 let dealerWon = false
 let playerBusted = false
@@ -24,10 +24,10 @@ let displayerPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
 let displayDealerHand = document.getElementById('dealer-cards')
 let statusMessage = document.getElementById('game-status')
-// let purseValue = document.getElementById('purse-value')
-// let currentBet = document.getElementById('current-bet')
-// let betInput = document.getElementById('bet-input')
-// let betBtn = document.getElementById('bet-button')
+let purseValue = document.getElementById('purse-value')
+let currentBet = document.getElementById('current-bet')
+let betInput = document.getElementById('bet-input')
+let betBtn = document.getElementById('bet-button')
 // let secondPhaseEls = document.querySelectorAll('.second')
 // let testMessage = document.getElementById('test-message')
 
@@ -36,7 +36,7 @@ let statusMessage = document.getElementById('game-status')
 dealBtn.addEventListener('click', playRound)
 hitBtn.addEventListener('click', hit)
 stayBtn.addEventListener('click', dealerTurn)
-// betBtn.addEventListener('click',updateBet)
+betBtn.addEventListener('click',updateBet)
 // sitDownBtn.addEventListener('click', startGame)
 
 /*-------------------------------- Functions --------------------------------*/
@@ -47,16 +47,22 @@ stayBtn.addEventListener('click', dealerTurn)
 //     element.style.display = "block"
 //   }
 // }
-
+function render(){
+  displayCards()
+  displayHandValues()
+  displayScore()
+  // updateBet()
+}
 
 // function updatePurse(){
 //   purseValue.innerHTML = `Purse: $${purse}`
 // }
 
-// function updateBet(){
-//   bet = betInput.value
-//   currentBet.innerHTML = `Current bet: $${bet}`
-// }
+function updateBet(){
+  // need to proof this so that strings cannot be entered
+  bet = betInput.value
+  currentBet.innerHTML = `Current bet: $${bet}`
+}
 
 function playRound(){
   // hitBtn.style.display = 'flex'
@@ -139,12 +145,6 @@ function endRound() {
     score ++
   }
   // dealBtn.style.display = 'flex'
-}
-
-function render(){
-  displayCards()
-  displayHandValues()
-  displayScore()
 }
 
 function blackjackCheck(){
