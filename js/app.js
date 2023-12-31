@@ -5,8 +5,8 @@ const suits = ['h' , 'd' , 'c' , 's'] // Hearts, Diamonds, Clovers, Spades
 let deck = []
 let playerHand = []
 let dealerHand = []
-let purse = 400
-let bet
+let purse = 500
+let bet = 0
 let playerWon = false
 let dealerWon = false
 let playerBusted = false
@@ -53,11 +53,10 @@ function render(){
   displayCards()
   displayHandValues()
   displayScore()
-  // updateBet()
 }
 
 function updatePurse(){
-  purseValue.innerHTML = `Purse: $${purse}`
+  purseValue.innerHTML = `Purse: $${parseInt(purse)}`
 }
 
 function updateBet(){
@@ -139,13 +138,21 @@ function bothStay(){
 }
 
 function endRound() {
+  bet = betInput.value
   if(playerWon && dealerWon){
     score 
+    purse
+    console.log(purse);
   } else if(dealerWon){
     score --
+    purse = purse - bet
+    console.log(purse);
   } else if(playerWon){
     score ++
+    purse = parseInt(purse) + parseInt(bet)
+    console.log(purse);
   }
+  updatePurse()
   // dealBtn.style.display = 'flex'
 }
 
