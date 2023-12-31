@@ -12,6 +12,7 @@ let dealerWon = false
 let playerBusted = false
 let dealerBusted = false
 let score = 0
+let aceCount = 0
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
@@ -58,9 +59,9 @@ stayBtn.addEventListener('click', dealerTurn)
 // }
 
 function playRound(){
-  hitBtn.style.display = 'flex'
-  stayBtn.style.display = 'flex'
-  dealBtn.style.display = 'none'
+  // hitBtn.style.display = 'flex'
+  // stayBtn.style.display = 'flex'
+  // dealBtn.style.display = 'none'
   playerHand = []
   dealerHand = []
   deck = []
@@ -80,8 +81,8 @@ function hit(){
 
   playerHand.push(deck.splice(0,1)[0])
   if (playerHandValue() >= 22) {
-    hitBtn.style.display = 'none'
-    stayBtn.style.display = 'none'
+    // hitBtn.style.display = 'none'
+    // stayBtn.style.display = 'none'
   
     playerBusted = true
     dealerTurn()
@@ -91,8 +92,8 @@ function hit(){
 }
 
 function dealerTurn(){
-  hitBtn.style.display = 'none'
-  stayBtn.style.display = 'none'
+  // hitBtn.style.display = 'none'
+  // stayBtn.style.display = 'none'
   if (playerHandValue() <= 21){
     while (dealerHandValue() < 17) {
         dealerHand.push(deck.splice(0,1)[0])
@@ -102,12 +103,12 @@ function dealerTurn(){
         dealerBusted = true
         playerWon = true
         endRound()
-        console.log(`dealer busts`);
       }
   } else {
     dealerWon = true
     endRound()
-    console.log(`no need to deal player busted.`);}
+  }
+
   if(!playerBusted && !dealerBusted){
     bothStay()
   }
@@ -137,7 +138,7 @@ function endRound() {
   } else if(playerWon){
     score ++
   }
-  dealBtn.style.display = 'flex'
+  // dealBtn.style.display = 'flex'
 }
 
 function render(){
@@ -152,24 +153,21 @@ function blackjackCheck(){
     // statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
     playerWon = true
     dealerWon = true
-    console.log('player and dealer have blackjack');
-    hitBtn.style.display = 'none'
-    stayBtn.style.display = 'none'
+    // hitBtn.style.display = 'none'
+    // stayBtn.style.display = 'none'
     endRound()
   } else if (dealerHandValue() === 21) {
     // statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
     dealerWon = true
-    console.log('dealer has blackjack');
-    hitBtn.style.display = 'none'
-    stayBtn.style.display = 'none'
+    // hitBtn.style.display = 'none'
+    // stayBtn.style.display = 'none'
     // console.log(dealerWins);
     endRound()
   } else if (playerHandValue() === 21) {
     // statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
     playerWon = true
-    console.log('player has blackjack');
-    hitBtn.style.display = 'none'
-    stayBtn.style.display = 'none'
+    // hitBtn.style.display = 'none'
+    // stayBtn.style.display = 'none'
     // console.log(playerWins);
     endRound()
   } else {
@@ -231,14 +229,24 @@ function playerHandValue() {
   let isoNum = playerHand.map(string => string.substring(1,2));
   let cardValues = isoNum.map(cardToPoints)
   let playerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-  return playerHandValue
+  //function for handling ace's. currently only handles for one ace. needs to be updated.
+  if(isoNum.some(element => element === 'A') === true && playerHandValue !== 21){
+    return playerHandValue - 10
+  } else {
+    return playerHandValue
+  }
 }
 
 function dealerHandValue() {
   let isoNum = dealerHand.map(string => string.substring(1,2));
   let cardValues = isoNum.map(cardToPoints)
   let dealerHandValue = cardValues.reduce((prev, point) => (prev + point), 0)
-  return dealerHandValue
+  //function for handling ace's. currently only handles for one ace. needs to be updated.
+  if(isoNum.some(element => element === 'A') === true && dealerHandValue !== 21){
+    return dealerHandValue - 10
+  } else {
+    return dealerHandValue
+  }
 }
 
 function cardToPoints(card){
