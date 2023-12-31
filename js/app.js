@@ -5,7 +5,7 @@ const suits = ['h' , 'd' , 'c' , 's'] // Hearts, Diamonds, Clovers, Spades
 let deck = []
 let playerHand = []
 let dealerHand = []
-let purse = 500
+let purse = 400
 let bet
 let playerWon = false
 let dealerWon = false
@@ -41,6 +41,8 @@ betBtn.addEventListener('click',updateBet)
 
 /*-------------------------------- Functions --------------------------------*/
 
+updatePurse()
+
 // function startGame(){
 //   sitDownBtn.style.display = 'none'
 //   for (let element of secondPhaseEls){
@@ -54,12 +56,13 @@ function render(){
   // updateBet()
 }
 
-// function updatePurse(){
-//   purseValue.innerHTML = `Purse: $${purse}`
-// }
+function updatePurse(){
+  purseValue.innerHTML = `Purse: $${purse}`
+}
 
 function updateBet(){
   // need to proof this so that strings cannot be entered
+  // and also to not allow to bet more than purse value
   bet = betInput.value
   currentBet.innerHTML = `Current bet: $${bet}`
 }
@@ -80,7 +83,6 @@ function playRound(){
   dealCards()
   blackjackCheck()
   render()
-  // updatePurse()
 }
 
 function hit(){
