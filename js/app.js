@@ -7,11 +7,9 @@ let playerHand = []
 let dealerHand = []
 // let purse = 500
 // let bet
-let dealerBusted = false
-let playerBusted = false
-let playerPushes = false
-let playerWins = false
-let dealerWins = false
+let playerWon = false
+let dealerWon = false
+let score = 0
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
@@ -80,12 +78,12 @@ stayBtn.addEventListener('click', dealerTurn)
 // }
 
 function dealerTurn(){
-  if (playerHandValue() < 21){
+  if (playerHandValue() <= 21){
     while (dealerHandValue() < 17) {
         dealerHand.push(deck.splice(0,1)[0])
         render()
       } 
-      if (dealerHandValue() >= 22){
+      if (dealerHandValue() > 21){
         console.log(`dealer busts`);
       }
   } else {console.log(`no need to deal player busted.`);}
@@ -96,15 +94,17 @@ function dealerTurn(){
 }
 
 
-// function endRound() {
-//   if (playerBusted) {
-//     hitBtn.style.display = 'none'
-//     stayBtn.style.display = 'none'
-//     betBtn.style.display = 'none'
-//     betInput.style.display = 'none'
-//   }
-//   render()
-// }
+function endRound() {
+  if (dealerWon) {
+    score --
+    console.log(score);
+  } else if (playerWon) {
+    score ++
+    console.log(score);
+  } else if (playerWon && dealerWon){
+    console.log(`player pushses`);;
+  }
+}
 
 // function displayButtons(){
 //   dealBtn.style.display
@@ -113,20 +113,6 @@ function dealerTurn(){
 //   stayBtn.style.display
 //   betInput.style.display
 // }
-
-
-// function dealCard(){
-//   // add functionality to stop allowing hit after 21 and switch turn to dealer
-//   playerHand.push(deck.splice(0,1)[0])
-//   // playerBusted = true
-//   if(playerHandValue() > 21){
-//     playerBusted = true
-//     statusMessage.innerHTML=`player busts`
-//   }
-
-//   render()
-// }
-
 
 function render(){
   displayCards()
@@ -154,19 +140,22 @@ function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
     // statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
-    playerWins = true
-    dealerWins = true
+    playerWon = true
+    dealerWon = true
     console.log('player and dealer have blackjack');
+    endRound()
   } else if (dealerHandValue() === 21) {
     // statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
-    dealerWins = true
+    dealerWon = true
     console.log('dealer has blackjack');
-    console.log(dealerWins);
+    // console.log(dealerWins);
+    endRound()
   } else if (playerHandValue() === 21) {
     // statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
-    playerWins = true
+    playerWon = true
     console.log('player has blackjack');
-    console.log(playerWins);
+    // console.log(playerWins);
+    endRound()
   } else {
     // statusMessage.innerHTML = ''
   }
@@ -206,6 +195,8 @@ function playRound(){
   playerHand = []
   dealerHand = []
   deck = []
+  dealerWon = false
+  playerWon = false
   createDeck()
   shuffleDeck()
   dealCards()
@@ -220,9 +211,6 @@ function playRound(){
   // determineWinner()
   // updatePurse()
   // endRound()
-  // console.log(playerHandValue());
-  // render()
-
 }
 
 function hit(){
