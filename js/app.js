@@ -58,6 +58,9 @@ stayBtn.addEventListener('click', dealerTurn)
 // }
 
 function playRound(){
+  hitBtn.style.display = 'flex'
+  stayBtn.style.display = 'flex'
+  dealBtn.style.display = 'none'
   playerHand = []
   dealerHand = []
   deck = []
@@ -77,6 +80,9 @@ function hit(){
 
   playerHand.push(deck.splice(0,1)[0])
   if (playerHandValue() >= 22) {
+    hitBtn.style.display = 'none'
+    stayBtn.style.display = 'none'
+  
     playerBusted = true
     dealerTurn()
   } 
@@ -85,6 +91,8 @@ function hit(){
 }
 
 function dealerTurn(){
+  hitBtn.style.display = 'none'
+  stayBtn.style.display = 'none'
   if (playerHandValue() <= 21){
     while (dealerHandValue() < 17) {
         dealerHand.push(deck.splice(0,1)[0])
@@ -114,7 +122,7 @@ function bothStay(){
   } else if (dealerHandValue() < playerHandValue()){
     playerWon = true
     endRound()
-  } else if (dealerHandValue() = playerHandValue()){
+  } else if (dealerHandValue() === playerHandValue()){
     playerWon = true
     dealerWon = true
     endRound()
@@ -122,13 +130,14 @@ function bothStay(){
 }
 
 function endRound() {
-  if (dealerWon) {
+  if(playerWon && dealerWon){
+    score 
+  } else if(dealerWon){
     score --
-  } else if (playerWon) {
+  } else if(playerWon){
     score ++
-  } else if (playerWon && dealerWon){
-    console.log(`player pushses`);;
   }
+  dealBtn.style.display = 'flex'
 }
 
 function render(){
@@ -144,17 +153,23 @@ function blackjackCheck(){
     playerWon = true
     dealerWon = true
     console.log('player and dealer have blackjack');
+    hitBtn.style.display = 'none'
+    stayBtn.style.display = 'none'
     endRound()
   } else if (dealerHandValue() === 21) {
     // statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
     dealerWon = true
     console.log('dealer has blackjack');
+    hitBtn.style.display = 'none'
+    stayBtn.style.display = 'none'
     // console.log(dealerWins);
     endRound()
   } else if (playerHandValue() === 21) {
     // statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
     playerWon = true
     console.log('player has blackjack');
+    hitBtn.style.display = 'none'
+    stayBtn.style.display = 'none'
     // console.log(playerWins);
     endRound()
   } else {
