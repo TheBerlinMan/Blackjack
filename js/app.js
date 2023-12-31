@@ -9,6 +9,8 @@ let dealerHand = []
 // let bet
 let playerWon = false
 let dealerWon = false
+let playerBusted = false
+let dealerBusted = false
 let score = 0
 /*------------------------ Cached Element References ------------------------*/
 
@@ -20,7 +22,7 @@ let displayDealerHandValue = document.getElementById('dealer-hand-value')
 let displayerPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
 let displayDealerHand = document.getElementById('dealer-cards')
-// let statusMessage = document.getElementById('game-status')
+let statusMessage = document.getElementById('game-status')
 // let purseValue = document.getElementById('purse-value')
 // let currentBet = document.getElementById('current-bet')
 // let betInput = document.getElementById('bet-input')
@@ -46,28 +48,6 @@ stayBtn.addEventListener('click', dealerTurn)
 // }
 
 
-
-
-
-
-//determine winner
-
-// function determineWinner(){
-//   if (playerWins = true) {
-//     // purse += bet
-//     testMessage.innerHTML = 'player wins'
-//   } else if (dealerWins = true) {
-//     testMessage.innerHTML = 'player loses'
-//     // purse -= bet
-//     // bet = 0
-//   } else if (playerPushes = true){
-//     testMessage.innerHTML = 'player pushes'
-//   }else {
-//     testMessage.innerHTML = ''
-//   }
-// }
-
-
 // function updatePurse(){
 //   purseValue.innerHTML = `Purse: $${purse}`
 // }
@@ -84,15 +64,36 @@ function dealerTurn(){
         render()
       } 
       if (dealerHandValue() > 21){
+        dealerBusted = true
+        playerWon = true
+        endRound()
         console.log(`dealer busts`);
       }
-  } else {console.log(`no need to deal player busted.`);}
-  console.log(dealerHandValue());
-  console.log(dealerHand);
+  } else {
+    dealerWon = true
+    endRound()
+    console.log(`no need to deal player busted.`);}
+  if(!playerBusted && !dealerBusted){
+    bothStay()
+  }
   
-  // render()
+  
+  render()
 }
 
+function bothStay(){
+  if (dealerHandValue() > playerHandValue()){
+    dealerWon = true
+    endRound()
+  } else if (dealerHandValue() < playerHandValue()){
+    playerWon = true
+    endRound()
+  } else if (dealerHandValue() = playerHandValue()){
+    playerWon = true
+    dealerWon = true
+    endRound()
+  }
+}
 
 function endRound() {
   if (dealerWon) {
@@ -106,18 +107,10 @@ function endRound() {
   }
 }
 
-// function displayButtons(){
-//   dealBtn.style.display
-//   hitBtn.style.display
-//   betBtn.style.display
-//   stayBtn.style.display
-//   betInput.style.display
-// }
-
 function render(){
   displayCards()
   displayHandValues()
-  // displayButtons()
+  displayScore()
 }
 
 function displayCards(){
@@ -159,6 +152,7 @@ function blackjackCheck(){
   } else {
     // statusMessage.innerHTML = ''
   }
+  render()
 }
 
 function displayHandValues(){
@@ -197,6 +191,8 @@ function playRound(){
   deck = []
   dealerWon = false
   playerWon = false
+  playerBusted = false
+  dealerBusted = false
   createDeck()
   shuffleDeck()
   dealCards()
@@ -211,12 +207,18 @@ function playRound(){
   // determineWinner()
   // updatePurse()
   // endRound()
+  console.log(score);
+}
+
+function displayScore(){
+  statusMessage.innerHTML = `score: ${score}`
 }
 
 function hit(){
   
   playerHand.push(deck.splice(0,1)[0])
   if (playerHandValue() >= 22) {
+    playerBusted = true
     dealerTurn()
   } 
 
