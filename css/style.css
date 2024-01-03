@@ -7,42 +7,59 @@
 } */
 
 
-
-
-
-
-
-
 body{
-  background-color: green;
+  background-color: #247BA0;
   font-family: sans-serif;
+  text-align: center;
+  
 }
 
 h1{
-  text-align: center;
+  font-size: 54px;
+  color:  #FFD670;
+  font-family: 'Imperial Script', cursive;
+  margin: 0;
+  padding: 0;
 }
+
+h3{
+  color: white;
+  padding: 5px 60px;
+  margin: 0;
+  
+}
+
+h5{
+  margin: 0;
+  padding: 0;
+  color:white;
+}
+
+p{
+  color:white
+}
+
+.leftLine, .rightLine{
+  border: 1px solid white;
+  width: 120px;
+}
+
+
 
 .table{
   text-align: center;
   display: flex;
+  justify-content: space-around;
+  border: 3px solid white;
+}
+
+.moneyArea{
+  display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid black;
+  justify-content: center;
 }
 
-
-.table-center > h3{
-
-  border: 3px solid black;
-  color: maroon;
-  padding: 5px 60px;
-  margin: 0;
-}
-
-.table-center > h5{
-  margin: 0;
-  padding: 0;
-}
 
 .status-bar{
   padding: 0px 20px;
@@ -52,10 +69,10 @@ h1{
   background-color: rgba(0,0,0,0.6);
 }
 
-.money-tracker{
+/* .money-tracker{
   display: flex;
   gap: 16px;
-}
+} */
 
 .action-area{
   display: flex;
@@ -67,7 +84,6 @@ h1{
   font-size: 12px;
   font-weight: 400;
   margin: 3px;
-  padding: 3px 8px;
   background-color: rgba(0,0,0,0.6);
   color: white;
   text-align: center;

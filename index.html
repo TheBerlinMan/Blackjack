@@ -7,32 +7,39 @@
     <title>Blackjack</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cardstarter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
+    <!-- header -->
     <h1 id="title">Blackjack</h1>
-    <div class="table first"></div>
-    <div class="table second" id="table">
+    <h3><i>Blackjack pays 3 to 2</i></h2>
+    <h5><i>Dealer stands at 17</i></h5>
+    <!-- display -->
+    <div class="table" id="table">
         <div class="dealer-area">
-            <h3 id="dealer-cards">Dealer</h3>
-            <div id="dealer-card-space">
-            </div>
+            <p>Dealer</p>
+            <p class="hand-value" id="dealer-hand-value"></p>
+            <div id="dealer-card-space"></div>
         </div>
-        <h3 class="hand-value" id="dealer-hand-value"></h3>
-        <div class="table-center">
-            <h5><i>Dealer stands at 17</i></h5>
-            <h3>Blackjack pays 3 to 2</h2>
+        <div class="moneyArea">
+            <div class="leftLine"></div>
+            <p class="status" id="current-bet">Current bet:<br>$0</p>
+            <p class="status" id="purse-value">Purse: </br>$500</p>
+            <div class="rightLine"></div>
         </div>
-        <h3 class="hand-value" id="player-hand-value"></h3>
         <div class="player-area">
+            <p>You</p>
+            <p class="hand-value" id="player-hand-value"></p>
             <div id="player-card-space"></div>
-            <h3 id="player-cards">You</h3>
         </div>
     </div>
+
+
+
     <div class="status-bar second">
         <p class="status" id="game-status">message</p>
         <div class="money-tracker">
-            <p class="status" id="current-bet">Current bet: $0</p>
-            <p class="status" id="purse-value">Purse: $500</p>
+            
         </div>
     </div>
     <div class="action-area">

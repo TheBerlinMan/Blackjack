@@ -122,7 +122,6 @@ function bothStay(){
 }
 
 function endRound() {
-  // purse currently pays 1:1 even for blackjack. need to adjust for blackjack case. 
   if(playerWon && dealerWon){
     purse
   } else if(dealerWon){
@@ -137,7 +136,6 @@ function endRound() {
 }
 
 function blackjackCheck(){
-  // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
     statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
     playerWon = true
@@ -165,14 +163,14 @@ function blackjackCheck(){
 }
 
 function updatePurse(){
-  purseValue.innerHTML = `Purse: $${parseInt(purse)}`
+  purseValue.innerHTML = `Purse: </br>$${parseInt(purse)}`
 }
 
 function updateBet(){
   // need to proof this so that strings cannot be entered
   // and also to not allow to bet more than purse value
   bet = betInput.value
-  currentBet.innerHTML = `Current bet: $${bet}`
+  currentBet.innerHTML = `Current bet: </br>$${bet}`
 }
 
 function displayCards(){
