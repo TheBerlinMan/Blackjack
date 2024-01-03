@@ -11,7 +11,7 @@ let playerWon = false
 let dealerWon = false
 let playerBusted = false
 let dealerBusted = false
-let score = 0
+let playerHasBJ = false
 let aceCount = 0
 /*------------------------ Cached Element References ------------------------*/
 
@@ -58,13 +58,14 @@ function playRound(){
   // hitBtn.style.display = 'flex'
   // stayBtn.style.display = 'flex'
   // dealBtn.style.display = 'none'
+  deck = []
   playerHand = []
   dealerHand = []
-  deck = []
   dealerWon = false
   playerWon = false
   playerBusted = false
   dealerBusted = false
+  playerHasBJ = false
   createDeck()
   shuffleDeck()
   dealCards()
@@ -126,6 +127,8 @@ function endRound() {
     purse
   } else if(dealerWon){
     purse = parseInt(purse) - parseInt(bet)
+  } else if(playerWon && playerHasBJ){
+    purse = parseInt(purse) + (parseInt(bet))*1.5
   } else if(playerWon){
     purse = parseInt(purse) + parseInt(bet)
   }
@@ -151,6 +154,7 @@ function blackjackCheck(){
   } else if (playerHandValue() === 21) {
     statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
     playerWon = true
+    playerHasBJ = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
     endRound()
