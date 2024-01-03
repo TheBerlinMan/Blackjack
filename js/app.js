@@ -28,6 +28,8 @@ let purseValue = document.getElementById('purse-value')
 let currentBet = document.getElementById('current-bet')
 let betInput = document.getElementById('bet-input')
 let betBtn = document.getElementById('bet-button')
+let dealerCardSpace = document.getElementById('dealer-card-space')
+let playerCardSpace = document.getElementById('player-card-space')
 // let secondPhaseEls = document.querySelectorAll('.second')
 // let testMessage = document.getElementById('test-message')
 
@@ -41,8 +43,6 @@ betBtn.addEventListener('click',updateBet)
 
 /*-------------------------------- Functions --------------------------------*/
 
-updatePurse()
-
 // function startGame(){
 //   sitDownBtn.style.display = 'none'
 //   for (let element of secondPhaseEls){
@@ -52,18 +52,6 @@ updatePurse()
 function render(){
   displayCards()
   displayHandValues()
-  displayScore()
-}
-
-function updatePurse(){
-  purseValue.innerHTML = `Purse: $${parseInt(purse)}`
-}
-
-function updateBet(){
-  // need to proof this so that strings cannot be entered
-  // and also to not allow to bet more than purse value
-  bet = betInput.value
-  currentBet.innerHTML = `Current bet: $${bet}`
 }
 
 function playRound(){
@@ -80,21 +68,18 @@ function playRound(){
   createDeck()
   shuffleDeck()
   dealCards()
-  blackjackCheck()
+  blackjackCheck()  
   render()
 }
 
 function hit(){
-
   playerHand.push(deck.splice(0,1)[0])
   if (playerHandValue() >= 22) {
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
-  
     playerBusted = true
     dealerTurn()
   } 
-
   render()
 }
 
@@ -115,11 +100,9 @@ function dealerTurn(){
     dealerWon = true
     endRound()
   }
-
   if(!playerBusted && !dealerBusted){
     bothStay()
   }
-  
   render()
 }
 
@@ -139,19 +122,12 @@ function bothStay(){
 
 function endRound() {
   // purse currently pays 1:1 even for blackjack. need to adjust for blackjack case. 
-  bet = betInput.value
   if(playerWon && dealerWon){
-    score 
     purse
-    console.log(purse);
   } else if(dealerWon){
-    score --
     purse = parseInt(purse) - parseInt(bet)
-    console.log(purse);
   } else if(playerWon){
-    score ++
     purse = parseInt(purse) + parseInt(bet)
-    console.log(purse);
   }
   updatePurse()
   // dealBtn.style.display = 'flex'
@@ -160,55 +136,62 @@ function endRound() {
 function blackjackCheck(){
   // need to add purse & bet variables, and then adjust based on blackjack result
   if(playerHandValue() === 21 & dealerHandValue() === 21) {
-    // statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
+    statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
     playerWon = true
     dealerWon = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
     endRound()
   } else if (dealerHandValue() === 21) {
-    // statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
+    statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
     dealerWon = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
-    // console.log(dealerWins);
     endRound()
   } else if (playerHandValue() === 21) {
-    // statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
+    statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
     playerWon = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
-    // console.log(playerWins);
     endRound()
   } else {
-    // statusMessage.innerHTML = ''
+    statusMessage.innerHTML = ''
   }
   render()
+}
+
+function updatePurse(){
+  purseValue.innerHTML = `Purse: $${parseInt(purse)}`
+}
+
+function updateBet(){
+  // need to proof this so that strings cannot be entered
+  // and also to not allow to bet more than purse value
+  bet = betInput.value
+  currentBet.innerHTML = `Current bet: $${bet}`
+}
+
+function displayCards(){
+  
+  dealerCardSpace.innerHTML = ''
+  dealerHand.forEach(card => {
+    let cardEl = document.createElement('div')
+    cardEl.classList.add('card', 'large', `${card}`)
+    dealerCardSpace.appendChild(cardEl)
+  })
+
+  playerCardSpace.innerHTML = ''
+  playerHand.forEach(card => {
+    let cardEl = document.createElement('div')
+    cardEl.classList.add('card', 'large', `${card}`)
+    playerCardSpace.appendChild(cardEl)
+  })
+
 }
 
 function displayHandValues(){
   displayDealerHandValue.innerHTML = `${dealerHandValue()}`
   displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
-}
-
-function displayCards(){
-  
-  displayDealerHand.innerHTML = dealerHand
-  // displayDealerHand.style.color = 'red'
-  displayPlayerHand.innerHTML = playerHand
-
-}
-
-// function valueToCard(){
-//   let newDiv = document.createElement('div')
-//   for (let i = 0 ; i < dealerHand.length ; i++){
-//     displayDealerHand.appendChild(newDiv)
-//     newDiv.className = `card ${dealerHand[i]}`
-//   }
-// }
-
-function displayScore(){
-  statusMessage.innerHTML = `score: ${score}`
 }
 
 function createDeck(){
