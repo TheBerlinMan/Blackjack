@@ -6,11 +6,31 @@
   display: none;
 } */
 
+.inactive{
+  display: none;
+}
+
+button, input{
+  background-color: #FFD670;
+  border-color: #FFD670;
+  border-style: double;
+  color: #247BA0;
+  border-radius: 8px;
+  height: 24px;
+}
+
+
+
+input{
+  width: 60px;
+} 
+
 
 body{
   background-color: #247BA0;
   font-family: sans-serif;
   text-align: center;
+  padding: 30px
   
 }
 
@@ -18,7 +38,7 @@ h1{
   font-size: 54px;
   color:  #FFD670;
   font-family: 'Imperial Script', cursive;
-  margin: 0;
+  margin: 30px;
   padding: 0;
 }
 
@@ -30,27 +50,31 @@ h3{
 }
 
 h5{
-  margin: 0;
+  margin: 10px;
   padding: 0;
   color:white;
 }
 
 p{
-  color:white
+  color:white;
+  margin: 0;
 }
 
 .leftLine, .rightLine{
   border: 1px solid white;
   width: 120px;
+  margin: 16px 0
 }
 
 
 
 .table{
+  padding: 30px;
   text-align: center;
   display: flex;
   justify-content: space-around;
   border: 3px solid white;
+  border-radius: 30px;
 }
 
 .moneyArea{
@@ -60,6 +84,9 @@ p{
   justify-content: center;
 }
 
+.player-options > div {
+  margin: 8px;
+}
 
 .status-bar{
   padding: 0px 20px;
@@ -68,11 +95,6 @@ p{
   color: white;
   background-color: rgba(0,0,0,0.6);
 }
-
-/* .money-tracker{
-  display: flex;
-  gap: 16px;
-} */
 
 .action-area{
   display: flex;
@@ -91,3 +113,15 @@ p{
   min-width: 20px
 }
 
+.userTitle{
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.status-top{
+  margin-bottom: 5px;
+}
+
+.status-bottom{
+  margin-top: 5px;
+}

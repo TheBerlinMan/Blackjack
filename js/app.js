@@ -13,13 +13,13 @@ let playerBusted = false
 let dealerBusted = false
 let playerHasBJ = false
 let dealerHasBJ = false
-let aceCount = 0
 let dealersTurn = false
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
 let stayBtn = document.getElementById('stay-button')
+let clearBetBtn = document.getElementById('clear-bet')
 // let sitDownBtn = document.getElementById('sit-down-button')
 let displayDealerHandValue = document.getElementById('dealer-hand-value')
 let displayPlayerHandValue = document.getElementById('player-hand-value')
@@ -41,6 +41,7 @@ dealBtn.addEventListener('click', playRound)
 hitBtn.addEventListener('click', hit)
 stayBtn.addEventListener('click', dealerTurn)
 betBtn.addEventListener('click',updateBet)
+clearBetBtn.addEventListener('click', clearBet)
 // sitDownBtn.addEventListener('click', startGame)
 
 /*-------------------------------- Functions --------------------------------*/
@@ -48,9 +49,11 @@ betBtn.addEventListener('click',updateBet)
 // function startGame(){
 //   sitDownBtn.style.display = 'none'
 //   for (let element of secondPhaseEls){
-//     element.style.display = "block"
+//     element.style.display = "inline-block"
 //   }
 // }
+
+
 function render(){
   displayCards()
   displayHandValues()
@@ -131,6 +134,8 @@ function blackjackCheck(){
     statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
     playerWon = true
     dealerWon = true
+    dealerHasBJ = true
+    playerHasBJ = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
     endRound()
@@ -158,7 +163,8 @@ function endRound() {
   if(playerWon && dealerWon){
     purse
   } else if(dealerWon){
-    purse = parseInt(purse) - parseInt(bet)
+    bet = 0
+    currentBet.innerHTML = `Current bet: </br>$${bet}`
   } else if(playerWon && playerHasBJ){
     purse = parseInt(purse) + (parseInt(bet))*1.5
   } else if(playerWon){
@@ -172,11 +178,21 @@ function updatePurse(){
   purseValue.innerHTML = `Purse: </br>$${parseInt(purse)}`
 }
 
+function clearBet(){
+  purse = parseInt(purse) + parseInt(bet)
+  bet = 0
+  currentBet.innerHTML = `Current bet: </br>$${bet}`
+  updatePurse()
+}
+
 function updateBet(){
   // need to proof this so that strings cannot be entered
   // and also to not allow to bet more than purse value
   bet = betInput.value
   currentBet.innerHTML = `Current bet: </br>$${bet}`
+  purse = parseInt(purse) - parseInt(bet)
+  betInput.value = ''
+  updatePurse()
 }
 
 function displayCards(){
@@ -262,7 +278,7 @@ function handValue(hand){
 
 function cardToPoints(card){
   if(card === 'A') {
-    return 11 // 11 for simplicity. Later provide cases for A = 1 or 11
+    return 11
   } else if (card === 'T' ||
              card === 'J' ||
              card === 'Q' ||

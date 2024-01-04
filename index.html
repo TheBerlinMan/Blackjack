@@ -16,44 +16,45 @@
     <!-- display -->
     <div class="table" id="table">
         <div class="player-area">
-            <p>You</p>
+            <p class="userTitle">You</p>
             <p class="hand-value" id="player-hand-value"></p>
             <div id="player-card-space"></div>
         </div>
         <div class="moneyArea">
-            <h5><i>Blackjack pays 3 to 2</i></h5>
-            <h5><i>Dealer stands at 17</i></h5>
+            <p>Blackjack pays 3 to 2</br>Dealer stands at 17</p>
             <div class="leftLine"></div>
-            <p class="status" id="current-bet">Current bet:<br>$0</p>
-            <p class="status" id="purse-value">Purse: </br>$500</p>
+            <p class="status-top" id="current-bet">Current bet:<br>$0</p>
+            <p class="status-bottom" id="purse-value">Purse: </br>$500</p>
             <div class="rightLine"></div>
         </div>
         <div class="dealer-area">
-            <p>Dealer</p>
+            <p class="userTitle">Dealer</p>
             <p class="hand-value" id="dealer-hand-value"></p>
             <div id="dealer-card-space"></div>
         </div>
-   
-        
     </div>
 
-
-
+    <!-- status bar -->
     <div class="status-bar second">
-        <p class="status" id="game-status">message</p>
-        <div class="money-tracker">
-            
-        </div>
+        <p class="status" id="game-status"></p>
     </div>
+    
+    <!-- buttons & inputs  -->
     <div class="action-area">
         <div class="player-options" id="player-options">
             <!-- <button class="playerBtn" id="sit-down-button">Sit Down</button> -->
-            <button class="playerBtn second" id="deal-button">Deal</button>
-            <button class="playerBtn third" id="hit-button">Hit</button>
-            <button class="playerBtn third" id="stay-button">Stay</button>
-            <input type="text" id="bet-input" class="betInput second" placeholder="$">
-            <button class="playerBtn second" id="bet-button">Bet</button>
+            <div class="mainGameButtons">
+                <button class="playerBtn second" id="deal-button">Deal</button>
+                <button class="playerBtn third" id="hit-button">Hit</button>
+                <button class="playerBtn third" id="stay-button">Stay</button>
+            </div>
+            <div class="betting">
+                <input type="text" id="bet-input" class="betInput second" placeholder="$">
+                <button class="playerBtn second" id="bet-button">Bet</button>
+                <button id="clear-bet">Clear Bet</button>
+            </div>
         </div>
     </div>
+
 </body>
 </html>
