@@ -10,7 +10,7 @@ After the player completes their turn, the dealer's hand is resolved by drawing 
 
 A player total of 21 on the first two cards is a "natural" or "blackjack", and the player wins immediately unless the dealer also has one, in which case the hand ties. In the case of a tie ("push" or "standoff"), bets are returned without adjustment. A blackjack beats any hand that is not a blackjack, even one with a value of 21.
 
-Wins are paid out at even money, except for player blackjacks, which is paid out at 3 to 2 odds.
+Wins are paid out at even money, except for player blackjacks, which are paid out at 3 to 2 odds.
 
 Play the game here: https://to-blackjack.netlify.app
 
@@ -33,3 +33,4 @@ Icebox:
 -
 -
 
+(insert link to planning materials)
