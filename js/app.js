@@ -13,6 +13,7 @@ let playerBusted = false
 let dealerBusted = false
 let playerHasBJ = false
 let aceCount = 0
+let dealersTurn = false
 /*------------------------ Cached Element References ------------------------*/
 
 let hitBtn = document.getElementById('hit-button')
@@ -66,6 +67,7 @@ function playRound(){
   playerBusted = false
   dealerBusted = false
   playerHasBJ = false
+  dealersTurn = false
   createDeck()
   shuffleDeck()
   dealCards()
@@ -85,6 +87,8 @@ function hit(){
 }
 
 function dealerTurn(){
+  dealersTurn = true
+  console.log(dealersTurn);
   // hitBtn.style.display = 'none'
   // stayBtn.style.display = 'none'
   if (playerHandValue() <= 21){
@@ -175,12 +179,26 @@ function updateBet(){
 
 function displayCards(){
   
-  dealerCardSpace.innerHTML = ''
-  dealerHand.forEach(card => {
+  if (dealersTurn){
+    dealerCardSpace.innerHTML = ''
+    dealerHand.forEach(card => {
     let cardEl = document.createElement('div')
     cardEl.classList.add('card', 'large', `${card}`)
     dealerCardSpace.appendChild(cardEl)
-  })
+    })
+  } else {
+    for (let i = 0 ; i < dealerHand.length ; i++){
+      let cardEl = document.createElement('div')
+      if(i === 0){
+        dealerCardSpace.innerHTML = ''
+        cardEl.classList.add('card', 'large', 'back-blue')
+        dealerCardSpace.appendChild(cardEl)
+      } else {
+        cardEl.classList.add('card', 'large', `${dealerHand[i]}`)
+        dealerCardSpace.appendChild(cardEl)
+      }
+    }  
+  }
 
   playerCardSpace.innerHTML = ''
   playerHand.forEach(card => {
@@ -192,7 +210,14 @@ function displayCards(){
 }
 
 function displayHandValues(){
-  displayDealerHandValue.innerHTML = `${dealerHandValue()}`
+  if(dealersTurn){
+
+    displayDealerHandValue.innerHTML = `${dealerHandValue()}`
+  } else {
+    
+    displayDealerHandValue.innerHTML = `${dealerHandValue() - parseInt(dealerHandValue(dealerHand[1]))} `
+  }
+
   displayerPlayerHandValue.innerHTML = `${playerHandValue()}`
 }
 
@@ -231,6 +256,20 @@ function playerHandValue() {
     return playerHandValue
   }
 }
+
+
+let testHand = ['hA', 'd2']
+handValue(testHand)
+console.log(handValue(testHand));
+
+function handValue(hand){
+  let isoNum = hand.map(string => string.substring(1,2));
+  let cardValues = isoNum.map(cardToPoints)
+  let handValue = cardValues.reduce((prev, point) => (prev + point), 0)
+  return handValue
+}
+
+
 
 function dealerHandValue() {
   let isoNum = dealerHand.map(string => string.substring(1,2));
