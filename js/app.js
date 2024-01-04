@@ -12,6 +12,7 @@ let dealerWon = false
 let playerBusted = false
 let dealerBusted = false
 let playerHasBJ = false
+let dealerHasBJ = false
 let aceCount = 0
 let dealersTurn = false
 /*------------------------ Cached Element References ------------------------*/
@@ -21,7 +22,7 @@ let dealBtn = document.getElementById('deal-button')
 let stayBtn = document.getElementById('stay-button')
 // let sitDownBtn = document.getElementById('sit-down-button')
 let displayDealerHandValue = document.getElementById('dealer-hand-value')
-let displayerPlayerHandValue = document.getElementById('player-hand-value')
+let displayPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
 let displayDealerHand = document.getElementById('dealer-cards')
 let statusMessage = document.getElementById('game-status')
@@ -67,6 +68,7 @@ function playRound(){
   playerBusted = false
   dealerBusted = false
   playerHasBJ = false
+  dealerHasBJ = false
   dealersTurn = false
   createDeck()
   shuffleDeck()
@@ -136,6 +138,7 @@ function blackjackCheck(){
   } else if (handValue(dealerHand) === 21) {
     statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
     dealerWon = true
+    dealerHasBJ = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
     endRound()
@@ -179,7 +182,7 @@ function updateBet(){
 
 function displayCards(){
   
-  if (dealersTurn){
+  if (dealersTurn || dealerHasBJ === true){
     dealerCardSpace.innerHTML = ''
     dealerHand.forEach(card => {
     let cardEl = document.createElement('div')
@@ -208,10 +211,20 @@ function displayCards(){
   })
 
 }
+// .map(string => string.substring(1,2))
+// let cardValue = firstCard.map(cardToPoints)
+// console.log(cardValue);
 
 function displayHandValues(){
-  displayDealerHandValue.innerHTML = `${handValue(dealerHand)}`
-  displayerPlayerHandValue.innerHTML = `${handValue(playerHand)}`
+  if (dealersTurn || dealerHasBJ === true){
+    displayDealerHandValue.innerHTML = `${handValue(dealerHand)} `
+  }else {  
+    let firstCard = dealerHand[0]
+    let firstCardNumber = firstCard.split('')
+    let cardValue = cardToPoints(firstCardNumber[1])
+    displayDealerHandValue.innerHTML = `${handValue(dealerHand) - cardValue}`
+  }
+  displayPlayerHandValue.innerHTML = `${handValue(playerHand)}`
 }
 
 function createDeck(){
