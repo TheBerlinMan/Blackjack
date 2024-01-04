@@ -90,7 +90,6 @@ function hit(){
 
 function dealerTurn(){
   dealersTurn = true
-  console.log(dealersTurn);
   // hitBtn.style.display = 'none'
   // stayBtn.style.display = 'none'
   if (handValue(playerHand) <= 21){
@@ -211,9 +210,6 @@ function displayCards(){
   })
 
 }
-// .map(string => string.substring(1,2))
-// let cardValue = firstCard.map(cardToPoints)
-// console.log(cardValue);
 
 function displayHandValues(){
   if (dealersTurn || dealerHasBJ === true){
@@ -253,11 +249,15 @@ function dealCards(){
 
 
 function handValue(hand){
-  // need to incorporate logic for handling Ace
   let isoNum = hand.map(string => string.substring(1,2));
+  let aceCheck = isoNum.some(ace => ace === 'A')
   let cardValues = isoNum.map(cardToPoints)
   let handValue = cardValues.reduce((prev, point) => (prev + point), 0)
-  return handValue
+  if(aceCheck && handValue > 21){
+    return handValue - 10
+  }else{
+    return handValue
+  }
 }
 
 function cardToPoints(card){
