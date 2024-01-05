@@ -20,14 +20,14 @@ Technologies used:
 - JavaScript
 - Git
 
-Credits:
+Attributions:
 - Thanks to Ben Manley for the CSS file.
 
 Recent Changes:
 n/a
 
 Icebox: 
--
+- add music 
 -
 -
 -

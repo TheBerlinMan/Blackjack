@@ -46,6 +46,7 @@ clearBetBtn.addEventListener('click', clearBet)
 
 /*-------------------------------- Functions --------------------------------*/
 
+// keeping for future icebox
 // function startGame(){
 //   sitDownBtn.style.display = 'none'
 //   for (let element of secondPhaseEls){
@@ -63,6 +64,7 @@ function playRound(){
   // hitBtn.style.display = 'flex'
   // stayBtn.style.display = 'flex'
   // dealBtn.style.display = 'none'
+
   deck = []
   playerHand = []
   dealerHand = []
@@ -73,6 +75,7 @@ function playRound(){
   playerHasBJ = false
   dealerHasBJ = false
   dealersTurn = false
+
   createDeck()
   shuffleDeck()
   dealCards()
