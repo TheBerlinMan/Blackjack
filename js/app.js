@@ -58,6 +58,7 @@ clearBetBtn.addEventListener('click', clearBet)
 function render(){
   displayCards()
   displayHandValues()
+  message()
 }
 
 function playRound(){
@@ -162,6 +163,19 @@ function blackjackCheck(){
   render()
 }
 
+function message(){
+  if(dealerWon && playerWon){
+    statusMessage.textContent = 'Player pushes.'
+  }else if (dealerWon) {
+    statusMessage.textContent = 'Bad luck, dealer wins.'
+  } else if (playerWon) {
+    statusMessage.textContent = 'Player wins! Congratulations!'
+  } else {
+    statusMessage.textContent = 'Game is live - betting is closed.'
+  }
+}
+
+
 function endRound() {
   if(playerWon && dealerWon){
     purse
@@ -172,6 +186,7 @@ function endRound() {
     purse = parseInt(purse) + (parseInt(bet))*1.5
   } else if(playerWon){
     purse = parseInt(purse) + parseInt(bet)
+
   }
   updatePurse()
   // dealBtn.style.display = 'flex'
