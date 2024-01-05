@@ -14,22 +14,24 @@ Wins are paid out at even money, except for player blackjacks, which are paid ou
 
 [Play the game here](https://to-blackjack.netlify.app)
 
-###### Technologies used:
+#### Technologies used:
 - HTML
 - CSS
 - JavaScript
 - Git
 
-###### Attributions:
+#### Attributions:
 - Thanks to Ben Manley for the CSS cardstarter file.
 
-###### Recent Changes:
+#### Recent Changes:
 n/a
 
-###### Icebox: 
--[] add 'double' option for player
--[] add 'split' option for player
--[] add 'surrender' option for player
--[] add background music and sound effects for the card turns
+#### Icebox: 
+- [] add 'double' option for player
+- [] add 'split' option for player
+- [] add 'surrender' option for player
+- [] add background music and sound effects for the card turns
 
-[You can view my planning materials for the building out this game here.](https://docs.google.com/document/d/1I_FMbUUI_8UH3oBAKzyyrsCO0Iuv13MsxqWoMzGSWtM/edit?usp=sharing)
+---
+
+[You can view my planning materials for the build out of this game here.](https://docs.google.com/document/d/1I_FMbUUI_8UH3oBAKzyyrsCO0Iuv13MsxqWoMzGSWtM/edit?usp=sharing)
