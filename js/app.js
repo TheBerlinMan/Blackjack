@@ -135,7 +135,6 @@ function bothStay(){
 
 function blackjackCheck(){
   if(handValue(playerHand) === 21 & handValue(dealerHand) === 21) {
-    statusMessage.innerHTML = 'Dealer and player have Blackjack. Player pushes.'
     playerWon = true
     dealerWon = true
     dealerHasBJ = true
@@ -144,30 +143,32 @@ function blackjackCheck(){
     // stayBtn.style.display = 'none'
     endRound()
   } else if (handValue(dealerHand) === 21) {
-    statusMessage.innerHTML = 'Dealer has Blackjack. Player loses.'
     dealerWon = true
     dealerHasBJ = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
     endRound()
   } else if (handValue(playerHand) === 21) {
-    statusMessage.innerHTML = 'Player has Blackjack! Player wins!'
     playerWon = true
     playerHasBJ = true
     // hitBtn.style.display = 'none'
     // stayBtn.style.display = 'none'
     endRound()
-  } else {
-    statusMessage.innerHTML = ''
   }
   render()
 }
 
 function message(){
-  if(dealerWon && playerWon){
+  if(dealerWon && playerWon && dealerHasBJ && playerHasBJ){
+    statusMessage.textContent = 'Dealer and player have Blackjack. Player pushes.'
+  } else if(dealerWon && playerWon){
     statusMessage.textContent = 'Player pushes.'
-  }else if (dealerWon) {
+  } else if (dealerWon && dealerHasBJ){
+    statusMessage.textContent = 'Dealer has Blackjack. Player loses.'
+  } else if (dealerWon) {
     statusMessage.textContent = 'Bad luck, dealer wins.'
+  } else if (playerWon && playerHasBJ){
+    statusMessage.textContent = 'Player has Blackjack! Player wins!'
   } else if (playerWon) {
     statusMessage.textContent = 'Player wins! Congratulations!'
   } else {
