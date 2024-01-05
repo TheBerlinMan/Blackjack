@@ -19,8 +19,10 @@ let dealersTurn = false
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
 let stayBtn = document.getElementById('stay-button')
+let betBtn = document.getElementById('bet-button')
 let clearBetBtn = document.getElementById('clear-bet')
 // let sitDownBtn = document.getElementById('sit-down-button')
+let betInput = document.getElementById('bet-input')
 let displayDealerHandValue = document.getElementById('dealer-hand-value')
 let displayPlayerHandValue = document.getElementById('player-hand-value')
 let displayPlayerHand = document.getElementById('player-cards')
@@ -28,12 +30,9 @@ let displayDealerHand = document.getElementById('dealer-cards')
 let statusMessage = document.getElementById('game-status')
 let purseValue = document.getElementById('purse-value')
 let currentBet = document.getElementById('current-bet')
-let betInput = document.getElementById('bet-input')
-let betBtn = document.getElementById('bet-button')
 let dealerCardSpace = document.getElementById('dealer-card-space')
 let playerCardSpace = document.getElementById('player-card-space')
 // let secondPhaseEls = document.querySelectorAll('.second')
-// let testMessage = document.getElementById('test-message')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -45,21 +44,6 @@ clearBetBtn.addEventListener('click', clearBet)
 // sitDownBtn.addEventListener('click', startGame)
 
 /*-------------------------------- Functions --------------------------------*/
-
-// keeping for future icebox
-// function startGame(){
-//   sitDownBtn.style.display = 'none'
-//   for (let element of secondPhaseEls){
-//     element.style.display = "inline-block"
-//   }
-// }
-
-
-function render(){
-  displayCards()
-  displayHandValues()
-  message()
-}
 
 function playRound(){
   // hitBtn.style.display = 'flex'
@@ -82,6 +66,12 @@ function playRound(){
   dealCards()
   blackjackCheck()  
   render()
+}
+
+function render(){
+  displayCards()
+  displayHandValues()
+  message()
 }
 
 function hit(){
@@ -258,31 +248,6 @@ function displayHandValues(){
   displayPlayerHandValue.innerHTML = `${handValue(playerHand)}`
 }
 
-function createDeck(){
-  for (let i = 0 ; i < cards.length ; i++){
-    for (let v = 0 ; v < suits.length ; v++){
-     deck.push(suits[v] + cards[i])
-    }
-  }
-}
-
-function shuffleDeck(){
-  for (let i = 0 ; i < deck.length ; i++){
-    let tempCard = deck[i]
-    let randomIndex = Math.floor(Math.random() * 52)
-    deck[i] = deck[randomIndex]
-    deck[randomIndex] = tempCard
-  }
-}
-
-function dealCards(){
-  playerHand.push(deck.splice(0,1)[0])
-  dealerHand.push(deck.splice(0,1)[0]) 
-  playerHand.push(deck.splice(0,1)[0])
-  dealerHand.push(deck.splice(0,1)[0]) 
-}
-
-
 function handValue(hand){
   let isoNum = hand.map(string => string.substring(1,2));
   let aceCheck = isoNum.some(ace => ace === 'A')
@@ -308,4 +273,34 @@ function cardToPoints(card){
   }
 }
 
+function createDeck(){
+  for (let i = 0 ; i < cards.length ; i++){
+    for (let v = 0 ; v < suits.length ; v++){
+     deck.push(suits[v] + cards[i])
+    }
+  }
+}
 
+function shuffleDeck(){
+  for (let i = 0 ; i < deck.length ; i++){
+    let tempCard = deck[i]
+    let randomIndex = Math.floor(Math.random() * 52)
+    deck[i] = deck[randomIndex]
+    deck[randomIndex] = tempCard
+  }
+}
+
+function dealCards(){
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+  playerHand.push(deck.splice(0,1)[0])
+  dealerHand.push(deck.splice(0,1)[0]) 
+}
+
+// keeping for future icebox
+// function startGame(){
+//   sitDownBtn.style.display = 'none'
+//   for (let element of secondPhaseEls){
+//     element.style.display = "inline-block"
+//   }
+// }

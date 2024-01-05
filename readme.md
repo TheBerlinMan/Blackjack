@@ -2,7 +2,7 @@
  
 ![Alt text](blackjack.png)
 
-The object of the game is to win money by creating card totals higher than those of the dealer's hand but not exceeding 21, or by stopping at a total in the hope that the dealer will "bust" (draw higher than 21). On their turn the player can choose to "hit" (take a card) or "stand" (end their turn and stop without taking a card).
+The objective of the game is to win money by creating card totals higher than those of the dealer's hand but not exceeding 21, or by stopping at a total in the hope that the dealer will "bust" (draw higher than 21). On their turn the player can choose to "hit" (take a card) or "stand" (end their turn and stop without taking a card).
 
 Number cards count as their number, the jack, queen, and king ("face cards" or "pictures") count as 10, and aces count as either 1 or 11 according to the player's choice. If the total hand value exceeds 21 points, the hand busts, and all bets on it immediately lose.
 
@@ -27,6 +27,7 @@ Wins are paid out at even money, except for player blackjacks, which are paid ou
 n/a
 
 #### Icebox: 
+- [] create 'sit down' and 'walk away' elements/phases to the game
 - [] add 'double' option for player
 - [] add 'split' option for player
 - [] add 'surrender' option for player
