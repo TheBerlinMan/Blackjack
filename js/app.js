@@ -16,6 +16,7 @@ let dealerHasBJ = false
 let dealersTurn = false
 /*------------------------ Cached Element References ------------------------*/
 
+let refreshBtn = document.getElementById('reset')
 let hitBtn = document.getElementById('hit-button')
 let dealBtn = document.getElementById('deal-button')
 let stayBtn = document.getElementById('stay-button')
@@ -36,6 +37,10 @@ let playerCardSpace = document.getElementById('player-card-space')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
+refreshBtn.addEventListener('click',function(){
+  location.reload()
+})
+
 dealBtn.addEventListener('click', playRound)
 hitBtn.addEventListener('click', hit)
 stayBtn.addEventListener('click', dealerTurn)
@@ -46,7 +51,9 @@ clearBetBtn.addEventListener('click', clearBet)
 /*-------------------------------- Functions --------------------------------*/
 
 function playRound(){
-  // hitBtn.style.display = 'flex'
+
+  // revert????
+  // hitBtn.style.display = 'flex' <---- revert????
   // stayBtn.style.display = 'flex'
   // dealBtn.style.display = 'none'
 

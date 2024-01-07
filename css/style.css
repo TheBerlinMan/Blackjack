@@ -2,7 +2,7 @@ button, input{
   background-color: #FFD670;
   border-color: #FFD670;
   border-style: double;
-  color: #247BA0;
+  color: #000000;
   border-radius: 8px;
   height: 24px;
 }
@@ -20,7 +20,9 @@ body{
   background-color: #247BA0;
   font-family: sans-serif;
   text-align: center;
-  padding: 30px
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
   
 }
 
@@ -56,7 +58,14 @@ p{
   margin: 16px 0
 }
 
-
+#reset{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  width: 30px;
+  height: 30px;
+}
 
 .table{
   padding: 30px;
